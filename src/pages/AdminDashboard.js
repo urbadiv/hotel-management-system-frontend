@@ -37,6 +37,7 @@ const AdminDashboard = () => {
 
     const handleDeleteEvent = async (id) => {
         try {
+            console.log(id);
             await deleteEvent(id);
             setEvents(events.filter((event) => event.id !== id));
             alert('Event deleted successfully!');
@@ -75,7 +76,7 @@ const AdminDashboard = () => {
                     <div key={event.id} className="p-4 border-b">
                         <h4 className="text-lg">{event.name}</h4>
                         <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                        <button onClick={() => handleDeleteEvent(event.id)} className="mt-2 bg-red-500 text-white p-2 rounded">
+                        <button onClick={() => handleDeleteEvent(event._id)} className="mt-2 bg-red-500 text-white p-2 rounded">
                             Delete Event
                         </button>
                     </div>

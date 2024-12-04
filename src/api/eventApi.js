@@ -20,7 +20,7 @@ export const createEvent = async (formData) => {
     return await API.post('/events/events', formData, config);
 };
 export const updateEvent = (id, data) => API.put(`/events/events/${id}`, data);
-export const deleteEvent = (id) => API.delete(`/events/${id}`);
+export const deleteEvent = (id) => API.delete(`/events/events/${id}`);
 export const login = (data) => API.post('/auth/login', data);
 export const signup = async (userData) => {
     try {
