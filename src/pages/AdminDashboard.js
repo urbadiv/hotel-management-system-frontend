@@ -4,6 +4,8 @@ import { getAdminEvents, createEvent, updateEvent, deleteEvent } from '../api/ev
 const AdminDashboard = () => {
     const [events, setEvents] = useState([]);
     const [formData, setFormData] = useState({ name: '', date: '', banner: '' });
+    const [editEvent, setEditEvent] = useState(null);
+
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -45,6 +47,25 @@ const AdminDashboard = () => {
             alert('Failed to delete event.');
         }
     };
+    const handleUpdateEvent = async (e) => {
+        e.preventDefault();
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', formData.name);
+            formDataToSend.append('date', formData.date);
+            if (formData.banner) formDataToSend.append('banner', formData.banner);
+            console.log(editEvent._id);
+
+            const response = await updateEvent(editEvent._id, formDataToSend);
+            setEvents(events.map((event) => (event.id === editEvent.id ? response.data.event : event)));
+            setEditEvent(null); // Reset edit state
+            alert('Event updated successfully!');
+        } catch (error) {
+            console.error('Error updating event:', error);
+            alert('Failed to update event.');
+        }
+    };
+
 
     return (
         <div className="p-6">
@@ -76,12 +97,49 @@ const AdminDashboard = () => {
                     <div key={event.id} className="p-4 border-b">
                         <h4 className="text-lg">{event.name}</h4>
                         <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                        <button onClick={() => handleDeleteEvent(event._id)} className="mt-2 bg-red-500 text-white p-2 rounded">
+                        <button
+                            onClick={() => {
+                                setEditEvent(event);
+                                setFormData({ name: event.name, date: event.date, banner: '' });
+                            }}
+                            className="mt-2 bg-yellow-500 text-white p-2 rounded"
+                        >
+                            Edit Event
+                        </button>
+                        <button
+                            onClick={() => handleDeleteEvent(event.id)}
+                            className="ml-2 bg-red-500 text-white p-2 rounded"
+                        >
                             Delete Event
                         </button>
                     </div>
                 ))}
+
             </div>
+            {editEvent && (
+                <form onSubmit={handleUpdateEvent} className="mb-6">
+                    <input
+                        type="text"
+                        placeholder="Event Name"
+                        className="block w-full mb-2 p-2 border rounded"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                    <input
+                        type="date"
+                        className="block w-full mb-2 p-2 border rounded"
+                        value={formData.date}
+                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    />
+                    <input
+                        type="file"
+                        className="block w-full mb-4 p-2 border rounded"
+                        onChange={(e) => setFormData({ ...formData, banner: e.target.files[0] })}
+                    />
+                    <button className="bg-green-500 text-white p-2 rounded">Update Event</button>
+                </form>
+            )}
+
         </div>
     );
 };
