@@ -16,6 +16,14 @@ export const getUserRole = () => {
     return decoded.role;
 };
 
+export const getUserId = () => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    const decoded = jwtDecode(token);
+    return decoded.id;
+};
+
 export const logout = () => {
     localStorage.removeItem('token');
     window.location.href = '/login';

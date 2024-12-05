@@ -5,7 +5,9 @@ const AdminDashboard = () => {
     const [events, setEvents] = useState([]);
     const [formData, setFormData] = useState({ name: '', date: '', banner: '' });
     const [editEvent, setEditEvent] = useState(null);
-
+    const [showModal, setShowModal] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [dateFilter, setDateFilter] = useState('');
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -21,25 +23,60 @@ const AdminDashboard = () => {
 
     const handleCreateEvent = async (e) => {
         e.preventDefault();
+        if (new Date(formData.date) < new Date()) {
+            alert('Date cannot be in the past.');
+            return;
+        }
+        if (!formData.name || !formData.date || !formData.banner) {
+            alert('All fields are required.');
+            return;
+        }
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('name', formData.name);
             formDataToSend.append('date', formData.date);
             formDataToSend.append('banner', formData.banner);
 
-            const response = await createEvent(formDataToSend); // Ensure this sends a multipart/form-data request
+            const response = await createEvent(formDataToSend);
             setEvents([...events, response.data.event]);
             alert('Event created successfully!');
+            setShowModal(false);
+            setFormData({ name: '', date: '', banner: '' });
         } catch (error) {
             console.error('Error creating event:', error);
             alert('Failed to create event.');
         }
     };
 
+    const handleUpdateEvent = async (e) => {
+        e.preventDefault();
+        if (new Date(formData.date) < new Date()) {
+            alert('Date cannot be in the past.');
+            return;
+        }
+        if (!formData.name || !formData.date) {
+            alert('Name and date are required.');
+            return;
+        }
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', formData.name);
+            formDataToSend.append('date', formData.date);
+            if (formData.banner) formDataToSend.append('banner', formData.banner);
+
+            const response = await updateEvent(editEvent._id, formDataToSend);
+            setEvents(events.map((event) => (event.id === editEvent.id ? response.data.event : event)));
+            setEditEvent(null);
+            alert('Event updated successfully!');
+            setFormData({ name: '', date: '', banner: '' });
+        } catch (error) {
+            console.error('Error updating event:', error);
+            alert('Failed to update event.');
+        }
+    };
 
     const handleDeleteEvent = async (id) => {
         try {
-            console.log(id);
             await deleteEvent(id);
             setEvents(events.filter((event) => event.id !== id));
             alert('Event deleted successfully!');
@@ -47,99 +84,116 @@ const AdminDashboard = () => {
             alert('Failed to delete event.');
         }
     };
-    const handleUpdateEvent = async (e) => {
-        e.preventDefault();
-        try {
-            const formDataToSend = new FormData();
-            formDataToSend.append('name', formData.name);
-            formDataToSend.append('date', formData.date);
-            if (formData.banner) formDataToSend.append('banner', formData.banner);
-            console.log(editEvent._id);
 
-            const response = await updateEvent(editEvent._id, formDataToSend);
-            setEvents(events.map((event) => (event.id === editEvent.id ? response.data.event : event)));
-            setEditEvent(null); // Reset edit state
-            alert('Event updated successfully!');
-        } catch (error) {
-            console.error('Error updating event:', error);
-            alert('Failed to update event.');
-        }
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
     };
 
+    const filteredEvents = events.filter(event => {
+        return event.name.toLowerCase().includes(searchTerm) &&
+            (!dateFilter || new Date(event.date).toLocaleDateString() === new Date(dateFilter).toLocaleDateString());
+    });
 
     return (
-        <div className="p-6">
-            <h2 className="text-2xl mb-4">Admin Dashboard</h2>
-            <form onSubmit={handleCreateEvent} className="mb-6">
-                <input
-                    type="text"
-                    placeholder="Event Name"
-                    className="block w-full mb-2 p-2 border rounded"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-                <input
-                    type="date"
-                    className="block w-full mb-2 p-2 border rounded"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                />
-                <input
-                    type="file"
-                    className="block w-full mb-4 p-2 border rounded"
-                    onChange={(e) => setFormData({ ...formData, banner: e.target.files[0] })}
-                />
-                <button className="bg-blue-500 text-white p-2 rounded">Create Event</button>
-            </form>
-            <div>
-                <h3 className="text-xl mb-4">Existing Events</h3>
-                {events.map((event) => (
-                    <div key={event.id} className="p-4 border-b">
-                        <h4 className="text-lg">{event.name}</h4>
-                        <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                        <button
-                            onClick={() => {
-                                setEditEvent(event);
-                                setFormData({ name: event.name, date: event.date, banner: '' });
-                            }}
-                            className="mt-2 bg-yellow-500 text-white p-2 rounded"
-                        >
-                            Edit Event
-                        </button>
-                        <button
-                            onClick={() => handleDeleteEvent(event.id)}
-                            className="ml-2 bg-red-500 text-white p-2 rounded"
-                        >
-                            Delete Event
-                        </button>
-                    </div>
-                ))}
-
-            </div>
-            {editEvent && (
-                <form onSubmit={handleUpdateEvent} className="mb-6">
+        <div className="p-6 bg-gray-100 min-h-screen">
+            <h2 className="text-3xl font-bold mb-4 text-center">Admin Dashboard</h2>
+            <div className="flex justify-between mb-4">
+                <div className="flex items-center space-x-4">
                     <input
                         type="text"
-                        placeholder="Event Name"
-                        className="block w-full mb-2 p-2 border rounded"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Search Events"
+                        className="p-2 border rounded-md w-80"
+                        value={searchTerm}
+                        onChange={handleSearch}
                     />
                     <input
                         type="date"
-                        className="block w-full mb-2 p-2 border rounded"
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        className="p-2 border rounded-md"
+                        onChange={(e) => setDateFilter(e.target.value)}
                     />
-                    <input
-                        type="file"
-                        className="block w-full mb-4 p-2 border rounded"
-                        onChange={(e) => setFormData({ ...formData, banner: e.target.files[0] })}
-                    />
-                    <button className="bg-green-500 text-white p-2 rounded">Update Event</button>
-                </form>
-            )}
+                    <button
+                        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                        onClick={() => window.location.reload()}
+                    >
+                        Clear Filters
+                    </button>
+                </div>
+                <button
+                    onClick={() => setShowModal(true)}
+                    className="flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600"
+                >
+                    <span className="font-bold text-xxl">+</span>
+                </button>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredEvents.map((event) => (
+                    <div key={event.id} className="p-4 bg-white border rounded-lg shadow-lg">
+                        <img src={`http://localhost:8070/uploads/${event.banner}`} alt={event.name}
+                             className="w-full h-40 object-cover rounded-md"/>
+                        <h4 className="text-lg font-bold mt-2">{event.name}</h4>
+                        <p className="text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
+                        <div className="flex mt-2">
+                            <button
+                                onClick={() => {
+                                    setEditEvent(event);
+                                    setFormData({name: event.name, date: event.date, banner: ''});
+                                    setShowModal(true);
+                                }}
+                                className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => handleDeleteEvent(event.id)}
+                                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {showModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+                        <h3 className="text-2xl font-bold mb-4">{editEvent ? 'Edit Event' : 'Create Event'}</h3>
+                        <form onSubmit={editEvent ? handleUpdateEvent : handleCreateEvent}>
+                            <input
+                                type="text"
+                                placeholder="Event Name"
+                                className="block w-full mb-2 p-2 border rounded"
+                                value={formData.name}
+                                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                                required
+                            />
+                            <input
+                                type="date"
+                                className="block w-full mb-2 p-2 border rounded"
+                                value={formData.date}
+                                onChange={(e) => setFormData({...formData, date: e.target.value})}
+                                required
+                            />
+                            <input
+                                type="file"
+                                className="block w-full mb-4 p-2 border rounded"
+                                onChange={(e) => setFormData({...formData, banner: e.target.files[0]})}
+                            />
+                            <button type="submit"
+                                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                                {editEvent ? 'Update Event' : 'Create Event'}
+                            </button>
+                        </form>
+                        <button
+                            onClick={() => setShowModal(false)}
+                            className="mt-2 w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

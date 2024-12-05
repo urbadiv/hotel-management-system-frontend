@@ -31,22 +31,5 @@ export const updateEvent = async (id, formData) => {
 export const deleteEvent = (id) => API.delete(`/events/events/${id}`);
 export const login = (data) => API.post('/auth/login', data);
 export const signup = async (userData) => {
-    try {
-        const response = await fetch('/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        });
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message);
-        }
-        return data;
-    } catch (error) {
-        console.error('Signup error:', error);
-        throw error;
-    }
+    return await API.post(`/auth/signup`, userData);
 };
-
