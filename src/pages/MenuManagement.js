@@ -145,7 +145,7 @@ const MenuManagement = () => {
                         <div>
                             <h2 className="font-bold">{item.name}</h2>
                             <p>{item.description}</p>
-                            <p className="text-gray-500">${item.price.toFixed(2)}</p>
+                            <p className="text-gray-500">Rs:{item.price.toFixed(0)}</p>
                             <p className="italic">{item.type}</p>
                             {item.photo && (
                                 <img
