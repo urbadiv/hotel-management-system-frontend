@@ -54,6 +54,13 @@ const AdminLayout = ({ children }) => {
                             <FiClipboard className="text-xl" />
                             {isSidebarOpen && <span className="ml-3">Room Management</span>}
                         </a>
+                    </Link><Link to="/admin/menuItem">
+                        <a
+                            className="flex items-center px-4 py-2 hover:bg-blue-700 transition"
+                        >
+                            <FiClipboard className="text-xl" />
+                            {isSidebarOpen && <span className="ml-3">Menu Management</span>}
+                        </a>
                     </Link>
                     {/* Add more links as needed */}
                 </nav>

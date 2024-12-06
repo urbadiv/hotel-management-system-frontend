@@ -34,6 +34,7 @@ const App = () => {
                                     <Route path="/profile" element={<Profile />} />
                                     <Route path="/users" element={<UserTable />} />
                                     <Route path="/rooms" element={<RoomManagement />} />
+                                    <Route path="/menuItem" element={<MenuManagement />} />
                                     {/* Add other admin-specific routes here */}
                                 </Routes>
                             </AdminLayout>
