@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { isAuthenticated, getUserRole } from './utils/auth';
 
 import RoomManagement from './pages/RoomManagement';
+import MenuManagement from './pages/MenuManagement';
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
                 element={
                   <ProtectedRoute role="admin">
                     {/* <AdminDashboard /> */}
-                    <RoomManagement/>
+                    {/* <RoomManagement/> */}
+                    <MenuManagement/>
                   </ProtectedRoute>
                 }
             />
