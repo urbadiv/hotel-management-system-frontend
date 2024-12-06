@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getAdminEvents, createEvent, updateEvent, deleteEvent } from '../api/eventApi';
+import AdminLayout from "../components/AdminLayout";
 
-const AdminDashboard = () => {
+const EventManagement = () => {
     const [events, setEvents] = useState([]);
     const [formData, setFormData] = useState({ name: '', date: '', banner: '' });
     const [editEvent, setEditEvent] = useState(null);
@@ -96,7 +97,6 @@ const AdminDashboard = () => {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
-            <h2 className="text-3xl font-bold mb-4 text-center">Admin Dashboard</h2>
             <div className="flex justify-between mb-4">
                 <div className="flex items-center space-x-4">
                     <input
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
-                    className="flex items-center px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600"
+                    className="flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
                 >
                     <span className="font-bold text-xxl">+</span>
                 </button>
@@ -133,20 +133,20 @@ const AdminDashboard = () => {
                              className="w-full h-40 object-cover rounded-md"/>
                         <h4 className="text-lg font-bold mt-2">{event.name}</h4>
                         <p className="text-gray-500">Date: {new Date(event.date).toLocaleDateString()}</p>
-                        <div className="flex mt-2">
+                        <div className="flex mt-2 gap-x-2">
                             <button
                                 onClick={() => {
                                     setEditEvent(event);
                                     setFormData({name: event.name, date: event.date, banner: ''});
                                     setShowModal(true);
                                 }}
-                                className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+                                className=" w-20 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
                             >
                                 Edit
                             </button>
                             <button
                                 onClick={() => handleDeleteEvent(event.id)}
-                                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                                className="w-20 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                             >
                                 Delete
                             </button>
@@ -198,4 +198,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default EventManagement;
