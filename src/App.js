@@ -8,6 +8,8 @@ import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
 import { isAuthenticated, getUserRole } from './utils/auth';
 
+import RoomManagement from './pages/RoomManagement';
+
 const App = () => {
   return (
       <Router>
@@ -21,7 +23,8 @@ const App = () => {
                 path="/admin"
                 element={
                   <ProtectedRoute role="admin">
-                    <AdminDashboard />
+                    {/* <AdminDashboard /> */}
+                    <RoomManagement/>
                   </ProtectedRoute>
                 }
             />
