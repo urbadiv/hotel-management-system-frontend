@@ -1,0 +1,256 @@
+
+.notify {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 68px;
+    
+}
+
+.notify .notifySub , .notifySubLowStocked {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #2A0A0B;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+  }
+
+.notify .notifySub p , .notifySubLowStocked p {
+    
+    color: aliceblue;
+  }
+
+.notify .notifySubLowStocked p {
+    
+    color: red;
+ }
+ 
+ 
+
+.notify .notifySub img , .notifySubLowStocked img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 10px;
+
+  }
+
+.button-row {
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.button-row button {
+    padding: 10px 20px;
+    background-color: white; 
+    border: 2px solid #2A0A0B;
+    color: #5D6670;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button-row button:hover {
+    background-color: #D4BB9D; 
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+@media screen and (max-width: 600px) {
+    /* Responsive styles */
+    table {
+        border: 0;
+    }
+    table thead {
+        display: none;
+    }
+    table tr {
+        border-bottom: 2px solid #ddd;
+        display: block;
+        margin-bottom: 10px;
+    }
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        text-align: right;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+.button {
+    display:inline-table;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; 
+    color: #fff; 
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+
+/* Separate style for the delete button */
+.button-delete {
+    background-color: #dc3545; /* Change to your desired delete button background color */
+}
+
+.button-delete:hover {
+    background-color: #c82333; /* Change to your desired delete button hover background color */
+}
+
+ 
+th:last-child,
+td:last-child {
+    width: 500px; 
+}
+
+/*td:last-child button {
+    margin-right: 5px; 
+    width: 70px; 
+}*/
+
+.link-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: #fff; 
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+table .update {
+    background-color: #FFC107;
+    color: #2A0A0B;
+
+}
+
+table .damage {
+    
+    background-color: #2a0a0b62;
+    color: #2A0A0B;
+
+
+}
+
+table .dispose {
+    background-color: #556B2F;
+
+}
+
+.button-row .link-button {
+    padding: 10px 20px;
+    background-color: white; 
+    border: 2px solid #2A0A0B;
+    color: #5D6670;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button-row .link-button:hover {
+    background-color: #D4BB9D; 
+}
+
+.searchBar {
+    flex: 1; /* Occupy remaining space */
+    text-align: right; /* Align search bar to the right */
+    margin-left: 10px; /* Add margin to separate from other buttons */
+}
+
+table .button-delete {
+    background-color: #dc3545; /* Change to your desired delete button background color */
+}
+
+.containerFrom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+.form-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 100vh;
+}
+
+.form-container h2 {
+    text-align: center;
+}
+
+label {
+    font-weight: 700;
+    color: #2A0A0B;
+}
+
+.form-control {
+    background-color: #d4bb9d4f;
+}
+
+.btn.btn-primary {
+    background-color: #2A0A0B;
+    color: #D4BB9D;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+.btn.btn-primary:hover  {
+    background-color: #D4BB9D;
+    color: #2A0A0B;
+}
+
+.filterCheckbox {
+    margin-right: 20px; /* Adjust spacing between checkboxes */
+  }
+  
+  .filterCheckbox input[type="checkbox"] {
+    margin-right: 5px; /* Adjust spacing between checkbox and label text */
+  }
+  
