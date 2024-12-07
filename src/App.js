@@ -16,7 +16,6 @@ import MenuManagement from './pages/MenuManagement';
 
 import Header from './components/InventoryManagement/Header';
 import AddProduct from './components/InventoryManagement/AddProduct';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import AllProducts from './components/InventoryManagement/AllProducts';
 import NavBar from './components/InventoryManagement/NavBar';
 import EditProduct from './components/InventoryManagement/EditProduct';
