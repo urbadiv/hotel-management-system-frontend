@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom"; // Ensure you're using react-router-dom
 import logo from "../img/logo.png";
+import user from "../img/profile.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,7 +60,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img src={logo} alt="Hotel Logo" className="h-10 w-10" />
-            <span className="ml-2 font-bold text-xl">Hotel Name</span>
+            <span className="ml-2 font-bold text-xl">Bon Bon Hotel</span>
           </div>
 
           {/* Navigation Links */}
@@ -83,9 +84,9 @@ const Header = () => {
                 onClick={() => setMenuOpen(!menuOpen)}
               >
                 <img
-                  src="/path-to-profile-icon.png"
+                  src={user}
                   alt="Profile Icon"
-                  className="h-8 w-8 rounded-full"
+                  className="h-10 w-10 rounded-full"
                 />
                 {menuOpen && (
                   <div className="absolute right-0 mt-2 bg-white shadow-lg rounded py-2 w-48 text-gray-800">
@@ -152,9 +153,9 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Add Padding to Content */}
-      {!isHomePage&&<div className="pt-[70px]">
-        {/* This ensures content starts below the header */}
+
+      {!isHomePage&&<div className="pt-[100px]">
+
       </div>}
     </>
   );
