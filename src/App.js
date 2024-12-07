@@ -14,7 +14,7 @@ import { isAuthenticated, getUserRole } from './utils/auth';
 import RoomManagement from './pages/RoomManagement';
 import MenuManagement from './pages/MenuManagement';
 
-import Header from './components/InventoryManagement/Header';
+
 import AddProduct from './components/InventoryManagement/AddProduct';
 import AllProducts from './components/InventoryManagement/AllProducts';
 import NavBar from './components/InventoryManagement/NavBar';
@@ -29,6 +29,9 @@ import AddCategory from './components/InventoryManagement/AddCategory';
 import AllCategorys from './components/InventoryManagement/AllCategorys';
 import CategoryWise from './components/InventoryManagement/CategoryWise';
 import GenerateReports from './components/InventoryManagement/GenerateReports';
+import Home from './pages/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => {
     return (
@@ -77,12 +80,14 @@ const App = () => {
                     path="/user/*"
                     element={
                         <div>
-                            <Navbar />
+                            <Header />
                             <Routes>
                                 {/* Include any additional non-admin routes here */}
+                                <Route path="/home" element={<Home />} />
                                 <Route path="/event" element={<EventList />} />
                                 <Route path="/profile" element={<Profile />} />
                             </Routes>
+                            <Footer/>
                         </div>
                     }
                 />
