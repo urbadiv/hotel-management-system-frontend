@@ -51,7 +51,7 @@ const EmployeeManagement = () => {
   useEffect(() => {
     // Automatically set salary when role changes
     if (formData.role) {
-      const selectedRole = roles.find((role) => role._id === formData.role);
+      const selectedRole = roles.find((role) => role.role === formData.role);
       if (selectedRole) {
         setFormData((prevData) => ({
           ...prevData,
@@ -75,7 +75,8 @@ const EmployeeManagement = () => {
       !formData.address ||
       !formData.phone ||
       !formData.nic ||
-      !formData.role ||
+      !formData.role 
+      ||
       !formData.salary
     ) {
       alert("All fields are required.");
@@ -90,10 +91,11 @@ const EmployeeManagement = () => {
       formDataToSend.append("phone", formData.phone);
       formDataToSend.append("nic", formData.nic);
       formDataToSend.append("role", formData.role);
-      formDataToSend.append("salary", formData.salary);
+
+      console.log(formData);
 
       // Call the API to create an employee
-      await createEmployee(formDataToSend);
+      await createEmployee(formData);
 
       // Fetch updated employee list
       const response = await getEmployees();
@@ -255,7 +257,7 @@ const EmployeeManagement = () => {
                   >
                     <option value="">Select Role</option>
                     {roles.map((role) => (
-                      <option key={role._id} value={role._id}>
+                      <option key={role._id} value={role.role}>
                         {role.role}
                       </option>
                     ))}
