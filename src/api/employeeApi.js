@@ -14,12 +14,13 @@ export const getEmployees = () => API.get("/employees");
 
 // Create a new employee
 export const createEmployee = async (formData) => {
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  };
-  return await API.post(`/employees/add`, formData, config);
+  console.log(formData);
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+  return await API.post("/employees/add", formData);
 };
 
 // Update an existing employee
