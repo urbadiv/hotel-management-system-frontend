@@ -14,10 +14,8 @@ import { isAuthenticated, getUserRole } from './utils/auth';
 import RoomManagement from './pages/RoomManagement';
 import MenuManagement from './pages/MenuManagement';
 
-import Header from './components/InventoryManagement/Header';
 import AddProduct from './components/InventoryManagement/AddProduct';
 import AllProducts from './components/InventoryManagement/AllProducts';
-import NavBar from './components/InventoryManagement/NavBar';
 import EditProduct from './components/InventoryManagement/EditProduct';
 import AddDamageItems from './components/InventoryManagement/AddDamageItems';
 import DamageItemList from './components/InventoryManagement/DamagedItemList';
@@ -52,7 +50,7 @@ const App = () => {
                                     <Route path="/rooms" element={<RoomManagement />} />
                                     <Route path="/menuItem" element={<MenuManagement />} />
                                     {/* Add other admin-specific routes here */}
-                                    /** Inventory Management System - Urindu **/
+                                    /** Inventory Management System **/
                                     <Route path="/add" element={<AddProduct />} />
                                     <Route path="/AllProducts" element={<AllProducts />} />
                                     <Route path="/edit/:id" element={<EditProduct />} />

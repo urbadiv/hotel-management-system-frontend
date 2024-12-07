@@ -6,8 +6,6 @@ import lowstock from "./images/lowstock.png";
 import { Link } from "react-router-dom";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 export default function DamageItemList(){
 
@@ -74,18 +72,11 @@ export default function DamageItemList(){
 
     return(
         <div>
-            <Header />
             <div class="containerApp">
-
-                <div class="nav-container">
-                    <NavBar />
-                </div>
 
                 <div class="content-container">
                     <div>
-                        <h1> Inventory Management System </h1>
-                        <hr className="big" />
-
+                        
         <div className="AllProductContainer">
 
             <h2> List of Damaged Items</h2>

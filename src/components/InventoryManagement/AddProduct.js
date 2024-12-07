@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 export default function AddProduct() {
     const [name, setName] = useState("");
@@ -72,15 +70,11 @@ export default function AddProduct() {
 
     return (
         <div>
-            <Header />
             <div className="containerApp">
-                <div className="nav-container">
-                    <NavBar />
-                </div>
+               
                 <div className="content-container">
                     <div>
-                        <h1> Inventory Management System </h1>
-                        <hr className="big" />
+                        
                         <div className="containerFrom">
                             <div className="form-container">
                                 <h2> Add New Product </h2>

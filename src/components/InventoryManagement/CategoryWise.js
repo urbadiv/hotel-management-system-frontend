@@ -6,8 +6,6 @@ import lowstock from "./images/lowstock.png";
 import { Link, useParams } from 'react-router-dom';
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 
 export default function CategoryWise() {
@@ -121,17 +119,13 @@ export default function CategoryWise() {
 
     return (
         <div>
-            <Header />
             <div class="containerApp">
 
-                <div class="nav-container">
-                    <NavBar />
-                </div>
+               
 
                 <div class="content-container">
                     <div>
-                        <h1> Inventory Management System </h1>
-                        <hr className="big" />
+                        
 
                         <div className="AllProductContainer">
 
@@ -139,32 +133,32 @@ export default function CategoryWise() {
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/AllProducts`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Products: {productCount}</Link>
+                                    <Link to={`/admin/AllProducts`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Products: {productCount}</Link>
                                 </div>
 
                                 <div className="notifySubLowStocked">
                                     <img src={lowstock} />
-                                    <Link to={`/LowStockedList`} style={{ textDecoration: 'none', color: 'red' }} >Out of Stock: {productLowCount}</Link>
+                                    <Link to={`/admin/LowStockedList`} style={{ textDecoration: 'none', color: 'red' }} >Out of Stock: {productLowCount}</Link>
                                 </div>
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/DamageItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Expired Items: {damagedCount}</Link>
+                                    <Link to={`/admin/DamageItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Expired Items: {damagedCount}</Link>
                                 </div>
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/DisposedItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Disposed Items: {disposedCount}</Link>
+                                    <Link to={`/admin/DisposedItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Disposed Items: {disposedCount}</Link>
 
                                 </div>
 
                             </div>
 
                             <div class="button-row">
-                                <Link to={`/GenerateReports`} className="button link-button">Generate Reports</Link>
-                                <Link to={`/AllProducts`} className="button link-button">Manage Items</Link>
-                                <Link to={`/add`} className="button link-button">Add New Items</Link>
-                                <Link to={`/AddCategory`} className="button link-button">Add New Category</Link>
+                                <Link to={`/admin/GenerateReports`} className="button link-button">Generate Reports</Link>
+                                <Link to={`/admin/AllProducts`} className="button link-button">Manage Items</Link>
+                                <Link to={`/admin/add`} className="button link-button">Add New Items</Link>
+                                <Link to={`/admin/AddCategory`} className="button link-button">Add New Category</Link>
 
                                 <form class="searchBar" role="search">
                                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setSearch(e.target.value)} />
@@ -198,8 +192,8 @@ export default function CategoryWise() {
                                             <td>{product.pid}</td>
                                             <td>{product.category}</td>
                                             <td>
-                                                <Link to={`/DisplaySingle/${product._id}`} className="button link-button update">View</Link>
-                                                <Link to={`/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
+                                                <Link to={`/admin/DisplaySingle/${product._id}`} className="button link-button update">View</Link>
+                                                <Link to={`/admin/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
                                                 <button className="button button-delete" onClick={() => deleteProduct(product._id)} >Delete</button>
                                             </td>
                                         </tr>

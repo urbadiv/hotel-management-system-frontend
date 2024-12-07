@@ -6,8 +6,6 @@ import lowstock from "./images/lowstock.png";
 import { Link } from "react-router-dom";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 
 export default function DisposedItemList() {
@@ -75,12 +73,9 @@ export default function DisposedItemList() {
 
     return (
         <div>
-            <Header />
             <div class="containerApp">
 
-                <div class="nav-container">
-                    <NavBar />
-                </div>
+               
 
                 <div class="content-container">
                     <div>

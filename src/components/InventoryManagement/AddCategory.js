@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 export default function AddCategory() {
     const [name, setName] = useState("");
@@ -53,17 +51,13 @@ export default function AddCategory() {
 
     return (
         <div>
-            <Header />
             <div class="containerApp">
 
-                <div class="nav-container">
-                    <NavBar />
-                </div>
+               
 
                 <div class="content-container">
                     <div>
-                        <h1> Inventory Management System </h1>
-                        <hr className="big" />
+                        
 
                         <div className="containerFrom">
 
