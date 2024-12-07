@@ -6,8 +6,6 @@ import { useReactToPrint } from "react-to-print";
 import reportImage from "./images/nilameLogo.png";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 
 export default function GenerateReports() {
@@ -56,12 +54,8 @@ export default function GenerateReports() {
 
     return (
         <div>
-            <Header />
             <div class="containerApp">
 
-                <div class="nav-container">
-                    <NavBar />
-                </div>
 
                 <div class="content-container">
                     <div>

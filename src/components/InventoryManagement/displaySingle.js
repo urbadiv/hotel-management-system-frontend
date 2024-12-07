@@ -5,8 +5,6 @@ import './styles/displaySingle.css';
 import { Link } from "react-router-dom";
 
 import './styles/Inventory.css'
-import Header from './Header';
-import NavBar from './NavBar';
 
 export default function DisplaySingle() {
     const { id } = useParams();
@@ -27,17 +25,13 @@ export default function DisplaySingle() {
 
     return (
         <div>
-            <Header />
             <div class="containerApp">
 
-                <div class="nav-container">
-                    <NavBar />
-                </div>
+                
 
                 <div class="content-container">
                     <div>
-                        <h1> Inventory Management System </h1>
-                        <hr className="big" />
+                        
 
                         <div className="container">
                             <div className="product-details">
@@ -73,8 +67,8 @@ export default function DisplaySingle() {
                                     </div>
 
                                     <div className="button-container">
-                                        <Link to={`/edit/${product._id}`} className="button link-button update">Update</Link>
-                                        <Link to={`/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
+                                        <Link to={`/admin/edit/${product._id}`} className="button link-button update">Update</Link>
+                                        <Link to={`/admin/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
                                     </div>
                                 </div>
                             </div>
