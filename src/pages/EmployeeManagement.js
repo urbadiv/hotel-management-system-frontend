@@ -51,7 +51,7 @@ const EmployeeManagement = () => {
   useEffect(() => {
     // Automatically set salary when role changes
     if (formData.role) {
-      const selectedRole = roles.find((role) => role._id === formData.role);
+      const selectedRole = roles.find((role) => role.role === formData.role);
       if (selectedRole) {
         setFormData((prevData) => ({
           ...prevData,
@@ -68,8 +68,35 @@ const EmployeeManagement = () => {
 
   const handleCreateEmployee = async (e) => {
     e.preventDefault();
+
+    // Validate required fields
+    if (
+      !formData.name ||
+      !formData.address ||
+      !formData.phone ||
+      !formData.nic ||
+      !formData.role ||
+      !formData.salary
+    ) {
+      alert("All fields are required.");
+      return;
+    }
+
     try {
+      // Prepare data for submission
+      const formDataToSend = new FormData();
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("address", formData.address);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("nic", formData.nic);
+      formDataToSend.append("role", formData.role);
+
+      console.log(formData);
+
+      // Call the API to create an employee
       await createEmployee(formData);
+
+      // Fetch updated employee list
       const response = await getEmployees();
       setEmployees(response.data);
       setFormData({
@@ -224,7 +251,7 @@ const EmployeeManagement = () => {
                   >
                     <option value="">Select Role</option>
                     {roles.map((role) => (
-                      <option key={role._id} value={role._id}>
+                      <option key={role._id} value={role.role}>
                         {role.role}
                       </option>
                     ))}
