@@ -17,10 +17,8 @@ import NotFound from "./pages/NotFound"; // A 404 page component
 import UserTable from "./pages/UserTable";
 import { isAuthenticated, getUserRole } from "./utils/auth";
 import RoomManagement from "./pages/RoomManagement";
-import EmployeesPage from "./pages/EmployeesPage";
-import AddEmployeePage from "./pages/AddEmployeePage";
-import RolesPage from "./pages/RolesPage";
-import AddRolePage from "./pages/AddRolePage";
+import EmployeeManagement from "./pages/EmployeeManagement";
+import RolesManagement from "./pages/RolesManagement";
 
 const App = () => {
   return (
@@ -42,10 +40,8 @@ const App = () => {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/users" element={<UserTable />} />
                   <Route path="/rooms" element={<RoomManagement />} />
-                  <Route path="/employees" element={<EmployeesPage />} />
-                  <Route path="/add-employee" element={<AddEmployeePage />} />
-                  <Route path="/roles" element={<RolesPage />} />
-                  <Route path="/add-role" element={<AddRolePage />} />
+                  <Route path="/employees" element={<EmployeeManagement />} />
+                  <Route path="/roles" element={<RolesManagement />} />
                   {/* Add other admin-specific routes here */}
                 </Routes>
               </AdminLayout>
