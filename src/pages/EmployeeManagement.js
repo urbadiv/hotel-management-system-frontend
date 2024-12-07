@@ -68,38 +68,10 @@ const EmployeeManagement = () => {
 
   const handleCreateEmployee = async (e) => {
     e.preventDefault();
-
-    // Validate required fields
-    if (
-      !formData.name ||
-      !formData.address ||
-      !formData.phone ||
-      !formData.nic ||
-      !formData.role ||
-      !formData.salary
-    ) {
-      alert("All fields are required.");
-      return;
-    }
-
     try {
-      // Prepare data for submission
-      const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("address", formData.address);
-      formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("nic", formData.nic);
-      formDataToSend.append("role", formData.role);
-      formDataToSend.append("salary", formData.salary);
-
-      // Call the API to create an employee
-      await createEmployee(formDataToSend);
-
-      // Fetch updated employee list
+      await createEmployee(formData);
       const response = await getEmployees();
       setEmployees(response.data);
-
-      // Reset form data and close the modal
       setFormData({
         name: "",
         address: "",
@@ -109,11 +81,8 @@ const EmployeeManagement = () => {
         salary: "",
       });
       setIsModalOpen(false);
-
-      alert("Employee created successfully!");
     } catch (error) {
       console.error("Error creating employee:", error);
-      alert("Failed to create employee.");
     }
   };
 

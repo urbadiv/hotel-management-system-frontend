@@ -19,7 +19,7 @@ export const createEmployee = async (formData) => {
       "Content-Type": "multipart/form-data",
     },
   };
-  return await API.post("/employees/add", formData, config);
+  return await API.post(`/employees/add`, formData, config);
 };
 
 // Update an existing employee
