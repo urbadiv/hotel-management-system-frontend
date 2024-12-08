@@ -25,7 +25,6 @@ const EmployeeManagement = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch all employees and roles when component mounts
     const fetchEmployees = async () => {
       try {
         const response = await getEmployees();
@@ -55,7 +54,6 @@ const EmployeeManagement = () => {
   }, []);
 
   useEffect(() => {
-    // Automatically set salary when role changes
     if (formData.role) {
       const selectedRole = roles.find((role) => role.role === formData.role);
       if (selectedRole) {
@@ -75,7 +73,6 @@ const EmployeeManagement = () => {
   const handleCreateEmployee = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (
       !formData.name ||
       !formData.address ||
@@ -89,7 +86,6 @@ const EmployeeManagement = () => {
     }
 
     try {
-      // Prepare data for submission
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("address", formData.address);
@@ -97,12 +93,8 @@ const EmployeeManagement = () => {
       formDataToSend.append("nic", formData.nic);
       formDataToSend.append("role", formData.role);
 
-      console.log(formData);
-
-      // Call the API to create an employee
       await createEmployee(formData);
 
-      // Fetch updated employee list
       const response = await getEmployees();
       setEmployees(response.data);
       setFormData({
@@ -122,7 +114,6 @@ const EmployeeManagement = () => {
   const handleUpdateEmployee = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (
       !formData.name ||
       !formData.address ||
@@ -136,20 +127,16 @@ const EmployeeManagement = () => {
     }
 
     try {
-      // Ensure the phone number starts with "+94"
       if (!formData.phone.startsWith("+94")) {
         alert("Phone number must start with +94.");
         return;
       }
 
-      // Call the API to update the employee
       await updateEmployee(currentEmployeeId, formData);
 
-      // Fetch the updated employee list
       const response = await getEmployees();
       setEmployees(response.data);
 
-      // Reset form and modal states
       setEditMode(false);
       setFormData({
         name: "",
@@ -184,19 +171,18 @@ const EmployeeManagement = () => {
       address: employee.address,
       phone: employee.phone,
       nic: employee.nic,
-      role: employee.role, // Assuming role is an object with _id
+      role: employee.role,
       salary: employee.salary,
     });
     setIsModalOpen(true);
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-8">
-      <h1 className="text-3xl font-semibold text-center mb-6">
+    <div className="max-w-4xl mx-auto mt-8 px-4">
+      <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">
         Employee Management
       </h1>
 
-      {/* Add button */}
       <div className="flex justify-end mb-4">
         <button
           onClick={() => {
@@ -211,7 +197,7 @@ const EmployeeManagement = () => {
             });
             setIsModalOpen(true);
           }}
-          className="bg-green-500 text-white p-3 rounded-full text-lg"
+          className="bg-green-500 text-white p-3 rounded-full text-lg hover:bg-green-600"
         >
           +
         </button>
@@ -221,7 +207,7 @@ const EmployeeManagement = () => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-xl font-semibold mb-4">
+            <h2 className="text-xl font-semibold mb-4 text-gray-800">
               {editMode ? "Edit Employee" : "Create Employee"}
             </h2>
             <form
@@ -235,7 +221,7 @@ const EmployeeManagement = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
@@ -246,7 +232,7 @@ const EmployeeManagement = () => {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
@@ -258,20 +244,16 @@ const EmployeeManagement = () => {
                     value={formData.phone}
                     onChange={(e) => {
                       const value = e.target.value;
-
-                      // Ensure the value always starts with "+94"
                       if (value.startsWith("+94")) {
-                        // Limit the total length to 12 characters
                         if (value.length <= 12) {
                           setFormData({ ...formData, phone: value });
                         }
                       } else if (value === "+94".slice(0, value.length)) {
-                        // Allow partial input to type "+94" incrementally
                         setFormData({ ...formData, phone: "+94" });
                       }
                     }}
                     placeholder="+94XXXXXXXXX"
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
@@ -282,7 +264,7 @@ const EmployeeManagement = () => {
                     name="nic"
                     value={formData.nic}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   />
                 </div>
@@ -292,7 +274,7 @@ const EmployeeManagement = () => {
                     name="role"
                     value={formData.role}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                   >
                     <option value="">Select Role</option>
@@ -310,7 +292,7 @@ const EmployeeManagement = () => {
                     name="salary"
                     value={formData.salary}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                     required
                     readOnly
                   />
@@ -320,13 +302,13 @@ const EmployeeManagement = () => {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="bg-gray-500 text-white py-2 px-4 rounded-md mr-2"
+                  className="bg-gray-500 text-white py-2 px-4 rounded-md mr-2 hover:bg-gray-600"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md"
+                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
                 >
                   {editMode ? "Update" : "Create"}
                 </button>
@@ -336,11 +318,15 @@ const EmployeeManagement = () => {
         </div>
       )}
 
-      {/* Employees list */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {employees.map((employee) => (
-          <div key={employee._id} className="bg-white p-4 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold">{employee.name}</h3>
+          <div
+            key={employee._id}
+            className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all"
+          >
+            <h3 className="text-xl font-semibold text-gray-800">
+              {employee.name}
+            </h3>
             <p className="text-gray-600">Address: {employee.address}</p>
             <p className="text-gray-600">Phone: {employee.phone}</p>
             <p className="text-gray-600">NIC: {employee.nic}</p>
@@ -349,13 +335,13 @@ const EmployeeManagement = () => {
             <div className="flex space-x-4 mt-4">
               <button
                 onClick={() => handleEditEmployee(employee)}
-                className="bg-yellow-500 text-white py-1 px-3 rounded-md"
+                className="bg-yellow-500 text-white py-1 px-3 rounded-md hover:bg-yellow-600"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDeleteEmployee(employee._id)}
-                className="bg-red-500 text-white py-1 px-3 rounded-md"
+                className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
               >
                 Delete
               </button>
