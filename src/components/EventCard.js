@@ -40,9 +40,9 @@ const EventCard = ({ event }) => {
                             <p className="text-lg text-gray-600 mb-4">Date: {new Date(event.date).toLocaleDateString()}</p>
                             <div className="text-gray-700">
                                 <p className="font-semibold">Hotel Contact Details:</p>
-                                <p>Phone: {event.hotelPhone}</p>
-                                <p>Email: {event.hotelEmail}</p>
-                                <p>Address: {event.hotelAddress}</p>
+                                <p>Phone: +94 77 888 7888</p>
+                                <p>Email: info@hotelbonbon.com</p>
+                                <p>Address: Hotel Bon Bon, Homagama</p>
                             </div>
                             <button
                                 className="mt-4 py-2 px-4 bg-[#DAA520] text-white rounded hover:bg-blue-700 transition-colors duration-300"

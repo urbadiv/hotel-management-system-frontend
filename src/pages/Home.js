@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Typewriter } from "react-simple-typewriter";
 import "slick-carousel/slick/slick.css";
@@ -6,8 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import hotelbg1 from "../img/home-hotel1.jpg";
 import hotelbg2 from "../img/home-hotel2.jpg";
 import hotelbg3 from "../img/home-hotel3.jpg";
+import { getEvents } from "../api/eventApi";  // Import the API function to fetch events
+import room from "../img/rooms.jpg";
+import dining from "../img/dining.jpg";
+import event from "../img/events.png";
+import EventCard from "../components/EventCard";
 
 const Home = () => {
+  const [events, setEvents] = useState([]);
   const heroImages = [hotelbg1, hotelbg2, hotelbg3];
 
   const sliderSettings = {
@@ -20,6 +26,19 @@ const Home = () => {
     autoplaySpeed: 4000,
     arrows: false,
   };
+
+  // Fetch events from backend
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const { data } = await getEvents();  // Fetch all events
+        setEvents(data.slice(0, 3));  // Get the first three events
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    fetchEvents();
+  }, []);
 
   return (
     <main className="bg-gray-100">
@@ -39,7 +58,7 @@ const Home = () => {
         </Slider>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center">
           <h1 className="text-5xl font-bold mb-4 text-white">
-          <Typewriter
+            <Typewriter
               words={[
                 "Welcome to Hotel Bon Bon",
                 "Your Luxury Getaway Awaits",
@@ -50,7 +69,7 @@ const Home = () => {
               typeSpeed={200} // Typing speed in ms
               deleteSpeed={50} // Deleting speed in ms
               delaySpeed={2000} // Delay between words in ms
-          />
+            />
           </h1>
           <p className="text-xl mb-8">Your luxury getaway in Homagama, Sri Lanka.</p>
           <a
@@ -68,14 +87,17 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-8">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-100 p-6 shadow rounded">
+              <img src={room} alt="Luxury Rooms" className="w-full h-48 object-cover mb-4 rounded" />
               <h3 className="text-xl font-semibold mb-4">Luxury Rooms</h3>
               <p>Spacious, air-conditioned rooms with premium amenities.</p>
             </div>
             <div className="bg-gray-100 p-6 shadow rounded">
+              <img src={dining} alt="Fine Dining" className="w-full h-48 object-cover mb-4 rounded" />
               <h3 className="text-xl font-semibold mb-4">Fine Dining</h3>
               <p>Experience world-class cuisine at our gourmet restaurant.</p>
             </div>
             <div className="bg-gray-100 p-6 shadow rounded">
+              <img src={event} alt="Event Spaces" className="w-full h-48 object-cover mb-4 rounded" />
               <h3 className="text-xl font-semibold mb-4">Event Spaces</h3>
               <p>Host your events in our versatile and elegant venues.</p>
             </div>
@@ -88,18 +110,11 @@ const Home = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-100 p-6 shadow rounded">
-              <h3 className="text-xl font-semibold mb-4">Live Music Night</h3>
-              <p>Join us for an unforgettable evening of live music.</p>
-            </div>
-            <div className="bg-gray-100 p-6 shadow rounded">
-              <h3 className="text-xl font-semibold mb-4">Culinary Workshop</h3>
-              <p>Learn the art of fine dining from our master chefs.</p>
-            </div>
-            <div className="bg-gray-100 p-6 shadow rounded">
-              <h3 className="text-xl font-semibold mb-4">Wedding Showcase</h3>
-              <p>Explore our stunning venues for your special day.</p>
-            </div>
+            {events.map((event) => (
+              <div key={event.id} className="bg-gray-100 p-6 shadow rounded">
+                <EventCard key={event.id} event={event} />
+              </div>
+            ))}
           </div>
         </div>
       </section>
