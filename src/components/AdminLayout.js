@@ -21,7 +21,7 @@ const AdminLayout = ({ children }) => {
                 {/* Logo */}
                 <div className="flex items-center justify-center py-4 border-b border-blue-700 gap-8">
                     <h1 className={`${isSidebarOpen ? "text-xl" : "hidden"} font-bold`}>
-                        Company Logo
+                        Bon Bon Hotel
                     </h1>
                     <FiMenu
                         className="text-2xl cursor-pointer"
@@ -54,10 +54,10 @@ const AdminLayout = ({ children }) => {
             {/* Main Content */}
             <div className="flex flex-col flex-1 ml-64 mt-16">
                 {/* Top Bar */}
-                <div className={`bg-white shadow-md px-4 py-2 flex justify-between items-center fixed top-0 ${
+                <div className={`bg-white shadow-md px-4 py-4 flex justify-between items-center fixed top-0 ${
             isSidebarOpen ? "left-64" : "left-16"
           } right-0 z-20`}>
-                    <h2 className="text-xl font-semibold text-gray-700">Dashboard</h2>
+                    <h2 className="text-xl font-semibold text-gray-700">Admin Dashboard</h2>
                     {/* Profile Icon */}
                     <div className="relative">
                         <button
