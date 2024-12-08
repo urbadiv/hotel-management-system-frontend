@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom"; // Ensure you're using react-router-dom
+import { useLocation,Link } from "react-router-dom"; // Ensure you're using react-router-dom
 import logo from "../img/logo.png";
 import user from "../img/profile.png";
 
@@ -60,7 +61,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img src={logo} alt="Hotel Logo" className="h-10 w-10" />
+            <Link to="/user/home">
             <span className="ml-2 font-bold text-xl">Bon Bon Hotel</span>
+            </Link>
           </div>
 
           {/* Navigation Links */}
@@ -77,6 +80,7 @@ const Header = () => {
             <a href="#events" className="hover:underline">
               Events
             </a>
+            </Link>
           </nav>
 
           {/* Login/Profile */}
@@ -93,12 +97,14 @@ const Header = () => {
                 />
                 {menuOpen && (
                   <div className="absolute right-0 mt-2 bg-white shadow-lg rounded py-2 w-48 text-gray-800">
+                    <Link to="/user/profile">
                     <a
                       href="/profile"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       Profile
                     </a>
+                    </Link>
                     <button
                       onClick={() => {
                         localStorage.removeItem("token");

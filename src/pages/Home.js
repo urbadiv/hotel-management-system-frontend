@@ -1,26 +1,61 @@
-// src/pages/Home.jsx
 import React from "react";
-import hotelbg from "../img/home-hotel.jpg";
+import Slider from "react-slick";
+import { Typewriter } from "react-simple-typewriter";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import hotelbg1 from "../img/home-hotel1.jpg";
+import hotelbg2 from "../img/home-hotel2.jpg";
+import hotelbg3 from "../img/home-hotel3.jpg";
 
 const Home = () => {
+  const heroImages = [hotelbg1, hotelbg2, hotelbg3];
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
+  };
+
   return (
     <main className="bg-gray-100">
       {/* Hero Section */}
-      <section
-        className="relative bg-cover bg-center h-screen"
-        style={{
-          backgroundImage: "url("+hotelbg+")",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="container mx-auto h-full flex flex-col justify-center items-center text-white text-center">
-          <h1 className="text-5xl font-bold mb-4">Welcome to Hotel Paradise</h1>
-          <p className="text-xl mb-8">
-            Your luxury getaway in Ahmedabad, India.
-          </p>
+      <section className="relative h-screen">
+        <Slider {...sliderSettings}>
+          {heroImages.map((image, index) => (
+            <div key={index} className="relative h-screen">
+              <img
+                src={image}
+                alt={`Hero slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            </div>
+          ))}
+        </Slider>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center">
+          <h1 className="text-5xl font-bold mb-4 text-white">
+          <Typewriter
+              words={[
+                "Welcome to Hotel Bon Bon",
+                "Your Luxury Getaway Awaits",
+              ]}
+              loop={Infinity}
+              cursor
+              cursorStyle="|"
+              typeSpeed={200} // Typing speed in ms
+              deleteSpeed={50} // Deleting speed in ms
+              delaySpeed={2000} // Delay between words in ms
+          />
+          </h1>
+          <p className="text-xl mb-8">Your luxury getaway in Homagama, Sri Lanka.</p>
           <a
             href="#booking"
-            className="bg-blue-600 px-6 py-3 rounded text-lg font-medium hover:bg-blue-700"
+            className="bg-transparent hover:bg-white hover:border-transparent text-white border border-white px-6 py-3 rounded text-lg font-medium"
           >
             Book Now
           </a>
@@ -48,47 +83,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Booking Form Section */}
-      <section id="booking" className="py-16 bg-blue-100">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Book Your Stay</h2>
-          <form className="max-w-md mx-auto bg-white p-6 rounded shadow">
-            <div className="mb-4">
-              <label
-                htmlFor="checkin"
-                className="block text-left font-medium mb-2"
-              >
-                Check-In Date
-              </label>
-              <input
-                type="date"
-                id="checkin"
-                className="w-full border-gray-300 rounded px-4 py-2"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="checkout"
-                className="block text-left font-medium mb-2"
-              >
-                Check-Out Date
-              </label>
-              <input
-                type="date"
-                id="checkout"
-                className="w-full border-gray-300 rounded px-4 py-2"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-            >
-              Book Now
-            </button>
-          </form>
-        </div>
-      </section>
-
       {/* Events Section */}
       <section id="events" className="py-16 bg-white">
         <div className="container mx-auto text-center">
@@ -99,9 +93,7 @@ const Home = () => {
               <p>Join us for an unforgettable evening of live music.</p>
             </div>
             <div className="bg-gray-100 p-6 shadow rounded">
-              <h3 className="text-xl font-semibold mb-4">
-                Culinary Workshop
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Culinary Workshop</h3>
               <p>Learn the art of fine dining from our master chefs.</p>
             </div>
             <div className="bg-gray-100 p-6 shadow rounded">
