@@ -25,12 +25,13 @@ export const createEmployee = async (formData) => {
 
 // Update an existing employee
 export const updateEmployee = async (id, formData) => {
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  };
-  return await API.put(`/employees/${id}`, formData, config);
+  console.log(formData);
+  // const config = {
+  //  headers: {
+  //      "Content-Type": "multipart/form-data",
+  //    },
+  //  };
+  return await API.put(`/employees/${id}`, formData);
 };
 
 // Delete an employee

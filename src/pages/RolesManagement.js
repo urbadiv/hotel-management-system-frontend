@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const RoleManagement = () => {
   const [roles, setRoles] = useState([]);
   const [formData, setFormData] = useState({
-    name: "",
+    role: "",
     salary: "",
     maxEmployees: "",
   });
@@ -15,7 +15,6 @@ const RoleManagement = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch all roles when the component mounts
     const fetchRoles = async () => {
       try {
         const response = await getRoles();
@@ -34,28 +33,58 @@ const RoleManagement = () => {
 
   const handleCreateRole = async (e) => {
     e.preventDefault();
+    if (!formData.role || !formData.salary || !formData.maxEmployees) {
+      alert("All fields are required.");
+      return;
+    }
+
     try {
-      await createRole(formData);
+      const payload = {
+        role: formData.role,
+        salary: parseFloat(formData.salary),
+        maxEmployees: parseInt(formData.maxEmployees, 10),
+      };
+
+      await createRole(payload);
       const response = await getRoles();
       setRoles(response.data);
-      setFormData({ name: "", salary: "", maxEmployees: "" });
+
+      setFormData({ role: "", salary: "", maxEmployees: "" });
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error creating role:", error);
+      console.error(
+        "Error creating role:",
+        error.response?.data || error.message
+      );
     }
   };
 
   const handleUpdateRole = async (e) => {
     e.preventDefault();
+    if (!formData.role || !formData.salary || !formData.maxEmployees) {
+      alert("All fields are required.");
+      return;
+    }
+
     try {
-      await updateRole(currentRoleId, formData);
+      const payload = {
+        role: formData.role,
+        salary: parseFloat(formData.salary),
+        maxEmployees: parseInt(formData.maxEmployees, 10),
+      };
+
+      await updateRole(currentRoleId, payload);
       const response = await getRoles();
       setRoles(response.data);
-      setEditMode(false);
-      setFormData({ name: "", salary: "", maxEmployees: "" });
+
+      setFormData({ role: "", salary: "", maxEmployees: "" });
       setIsModalOpen(false);
+      setEditMode(false);
     } catch (error) {
-      console.error("Error updating role:", error);
+      console.error(
+        "Error updating role:",
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -73,7 +102,7 @@ const RoleManagement = () => {
     setEditMode(true);
     setCurrentRoleId(role._id);
     setFormData({
-      name: role.role,
+      role: role.role,
       salary: role.salary,
       maxEmployees: role.maxEmployees,
     });
@@ -91,7 +120,7 @@ const RoleManagement = () => {
         <button
           onClick={() => {
             setEditMode(false);
-            setFormData({ name: "", salary: "", maxEmployees: "" });
+            setFormData({ role: "", salary: "", maxEmployees: "" });
             setIsModalOpen(true);
           }}
           className="bg-green-500 text-white p-3 rounded-full text-lg"
@@ -100,7 +129,7 @@ const RoleManagement = () => {
         </button>
       </div>
 
-      {/* Modal for creating/updating roles */}
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -113,8 +142,8 @@ const RoleManagement = () => {
                   <label className="block text-gray-700">Role Name</label>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="role"
+                    value={formData.role}
                     onChange={handleInputChange}
                     className="w-full px-4 py-2 border rounded-md"
                     required

@@ -49,6 +49,12 @@ const EmployeeManagement = () => {
   }, []);
 
   useEffect(() => {
+    if (!formData.phone) {
+      setFormData({ ...formData, phone: "+94" });
+    }
+  }, []);
+
+  useEffect(() => {
     // Automatically set salary when role changes
     if (formData.role) {
       const selectedRole = roles.find((role) => role.role === formData.role);
@@ -115,15 +121,40 @@ const EmployeeManagement = () => {
 
   const handleUpdateEmployee = async (e) => {
     e.preventDefault();
+
+    // Validate required fields
+    if (
+      !formData.name ||
+      !formData.address ||
+      !formData.phone ||
+      !formData.nic ||
+      !formData.role ||
+      !formData.salary
+    ) {
+      alert("All fields are required.");
+      return;
+    }
+
     try {
+      // Ensure the phone number starts with "+94"
+      if (!formData.phone.startsWith("+94")) {
+        alert("Phone number must start with +94.");
+        return;
+      }
+
+      // Call the API to update the employee
       await updateEmployee(currentEmployeeId, formData);
+
+      // Fetch the updated employee list
       const response = await getEmployees();
       setEmployees(response.data);
+
+      // Reset form and modal states
       setEditMode(false);
       setFormData({
         name: "",
         address: "",
-        phone: "",
+        phone: "+94",
         nic: "",
         role: "",
         salary: "",
@@ -131,6 +162,7 @@ const EmployeeManagement = () => {
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error updating employee:", error);
+      alert("Failed to update employee. Please try again.");
     }
   };
 
@@ -224,7 +256,21 @@ const EmployeeManagement = () => {
                     type="text"
                     name="phone"
                     value={formData.phone}
-                    onChange={handleInputChange}
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      // Ensure the value always starts with "+94"
+                      if (value.startsWith("+94")) {
+                        // Limit the total length to 12 characters
+                        if (value.length <= 12) {
+                          setFormData({ ...formData, phone: value });
+                        }
+                      } else if (value === "+94".slice(0, value.length)) {
+                        // Allow partial input to type "+94" incrementally
+                        setFormData({ ...formData, phone: "+94" });
+                      }
+                    }}
+                    placeholder="+94XXXXXXXXX"
                     className="w-full px-4 py-2 border rounded-md"
                     required
                   />
