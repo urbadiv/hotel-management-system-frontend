@@ -107,7 +107,7 @@ const Header = () => {
                     <button
                       onClick={() => {
                         localStorage.removeItem("token");
-                        window.location.reload(); // Reload to update state
+                        window.location.href = '/login';// Reload to update state
                       }}
                       className="w-full text-left block px-4 py-2 hover:bg-gray-100"
                     >

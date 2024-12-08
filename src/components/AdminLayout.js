@@ -15,6 +15,7 @@ import {
 import { logout } from "../utils/auth";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
+import { FaPeopleGroup, FaArrowsDownToPeople } from "react-icons/fa6";
 
 const AdminLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -29,10 +30,10 @@ const AdminLayout = ({ children }) => {
       <div
         className={`${
           isSidebarOpen ? "w-64" : "w-16"
-        } fixed top-0 left-0 h-full bg-blue-800 text-white transition-all duration-300 flex flex-col z-10`}
+        } fixed top-0 left-0 h-full bg-gray-900 text-white transition-all duration-300 flex flex-col z-10`}
       >
         {/* Logo */}
-        <div className="flex items-center justify-center py-4 border-b border-blue-700 gap-8">
+        <div className="flex items-center justify-center py-4 border-b border-black gap-8">
           <h1
             className={`${
               isSidebarOpen ? "text-xl text-white" : "hidden"
@@ -80,7 +81,7 @@ const AdminLayout = ({ children }) => {
           {/* New Employee Management Link */}
           <Link to="/admin/employees">
             <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
-              <FiUser className="text-xl" />
+              <FaPeopleGroup className="text-xl" />
               {isSidebarOpen && (
                 <span className="ml-3">Employee Management</span>
               )}
@@ -89,7 +90,7 @@ const AdminLayout = ({ children }) => {
           {/* New Employee Roles Management Link */}
           <Link to="/admin/roles">
             <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
-              <FiClipboard className="text-xl" />
+              <FaArrowsDownToPeople className="text-xl" />
               {isSidebarOpen && (
                 <span className="ml-3">Position Management</span>
               )}

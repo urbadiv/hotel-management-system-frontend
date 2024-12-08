@@ -47,6 +47,7 @@ const App = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Navigate to="/user/home" />} />
 
         {/* Protected Admin Route wrapped in AdminLayout */}
         <Route
