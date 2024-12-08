@@ -1,0 +1,99 @@
+.product-details {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.detail {
+    margin-bottom: 10px;
+}
+
+.detail label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.detail span {
+    color: #666;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-frame {
+    padding: 5px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.update-button,
+.delete-button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.update-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: #fff; /* Text color */
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.update {
+    background-color: #FFC107;
+}
+
+.damage {
+    
+    background-color: #D4BB9D;
+
+}
+
+.dispose {
+    background-color: #556B2F;
+}
+
+.link-button:hover {
+    background-color: #0056b3; /* Hover background color */
+}
+
+.link-button:active {
+    background-color: #004280; /* Active background color */
+}
+

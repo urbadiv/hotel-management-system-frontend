@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { FiMenu, FiUser, FiLogOut, FiCalendar, FiClipboard } from "react-icons/fi";
-import {logout} from "../utils/auth";
-import {Link} from "react-router-dom";
+import { FaUsersCog } from "react-icons/fa";
+import { MdOutlineMeetingRoom, MdOutlineRestaurantMenu, MdOutlineInventory } from "react-icons/md";
+import { logout } from "../utils/auth";
+import { Link } from "react-router-dom";
+import logo from "../img/logo.png";
 
 const AdminLayout = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -20,8 +23,8 @@ const AdminLayout = ({ children }) => {
             >
                 {/* Logo */}
                 <div className="flex items-center justify-center py-4 border-b border-blue-700 gap-8">
-                    <h1 className={`${isSidebarOpen ? "text-xl" : "hidden"} font-bold`}>
-                        Company Logo
+                    <h1 className={`${isSidebarOpen ? "text-xl text-white" : "hidden"} font-bold`}>
+                        Bon Bon Hotel
                     </h1>
                     <FiMenu
                         className="text-2xl cursor-pointer"
@@ -32,40 +35,50 @@ const AdminLayout = ({ children }) => {
                 {/* Navigation Links */}
                 <nav className="flex flex-col mt-4 space-y-2">
                     <Link to="/admin/event">
-                    <a
-                        className="flex items-center px-4 py-2 hover:bg-blue-700 transition"
-                    >
-                        <FiCalendar className="text-xl" />
-                        {isSidebarOpen && <span className="ml-3">Event Management</span>}
-                    </a>
+                        <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
+                            <FiCalendar className="text-xl" />
+                            {isSidebarOpen && <span className="ml-3">Event Management</span>}
+                        </div>
                     </Link>
                     <Link to="/admin/users">
-                    <a
-                        className="flex items-center px-4 py-2 hover:bg-blue-700 transition"
-                    >
-                        <FiClipboard className="text-xl" />
-                        {isSidebarOpen && <span className="ml-3">User Management</span>}
-                    </a>
+                        <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
+                            <FaUsersCog className="text-xl" />
+                            {isSidebarOpen && <span className="ml-3">User Management</span>}
+                        </div>
                     </Link>
                     <Link to="/admin/rooms">
-                        <a
-                            className="flex items-center px-4 py-2 hover:bg-blue-700 transition"
-                        >
-                            <FiClipboard className="text-xl" />
+                        <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
+                            <MdOutlineMeetingRoom className="text-xl" />
                             {isSidebarOpen && <span className="ml-3">Room Management</span>}
-                        </a>
+                        </div>
                     </Link>
-                    {/* Add more links as needed */}
+                    <Link to="/admin/menuItem">
+                        <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
+                            <MdOutlineRestaurantMenu className="text-xl" />
+                            {isSidebarOpen && <span className="ml-3">Menu Management</span>}
+                        </div>
+                    </Link>
+                    <Link to="/admin/AllCategorys">
+                        <div className="flex items-center px-4 py-2 hover:bg-blue-700 transition">
+                            <MdOutlineInventory className="text-xl" />
+                            {isSidebarOpen && <span className="ml-3">Inventory Management</span>}
+                        </div>
+                    </Link>
                 </nav>
             </div>
 
             {/* Main Content */}
-            <div className="flex flex-col flex-1 ml-64 mt-16">
+            <div
+                className={`flex flex-col transition-all duration-300 ${
+                    isSidebarOpen ? "ml-64" : "ml-16"
+                } w-full`}
+            >
                 {/* Top Bar */}
-                <div className={`bg-white shadow-md px-4 py-2 flex justify-between items-center fixed top-0 ${
-            isSidebarOpen ? "left-64" : "left-16"
-          } right-0 z-20`}>
-                    <h2 className="text-xl font-semibold text-gray-700">Dashboard</h2>
+                <div className={`bg-white shadow-md px-4 py-3 flex justify-between items-center fixed top-0 left-0 right-0 z-20 ${
+                    isSidebarOpen ? "ml-64" : "ml-16"
+                }`}>
+                    <img src={logo} alt="Hotel Logo" className="h-10 w-10" />
+                    <h2 className="text-xl font-semibold text-gray-700">Admin Dashboard</h2>
                     {/* Profile Icon */}
                     <div className="relative">
                         <button
@@ -79,27 +92,23 @@ const AdminLayout = ({ children }) => {
                         {isProfileMenuOpen && (
                             <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-md border">
                                 <Link to="/admin/profile">
-                                <a
-                                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                                >
-                                    Profile
-                                </a>
+                                    <div className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                        Profile
+                                    </div>
                                 </Link>
-                                <a
+                                <div
                                     onClick={logout}
-                                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
                                 >
                                     Logout
-                                </a>
+                                </div>
                             </div>
                         )}
                     </div>
                 </div>
 
                 {/* Page Content */}
-                <div className="flex-1 p-1 overflow-y-auto">
-                    {children}
-                </div>
+                <div className="flex-1 p-6 mt-16 overflow-y-auto">{children}</div>
             </div>
         </div>
     );

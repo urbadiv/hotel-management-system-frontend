@@ -81,6 +81,7 @@ const EventManagement = () => {
             await deleteEvent(id);
             setEvents(events.filter((event) => event.id !== id));
             alert('Event deleted successfully!');
+
         } catch (error) {
             alert('Failed to delete event.');
         }
@@ -137,7 +138,8 @@ const EventManagement = () => {
                             <button
                                 onClick={() => {
                                     setEditEvent(event);
-                                    setFormData({name: event.name, date: event.date, banner: ''});
+                                    const formattedDate = new Date(event.date).toISOString().split('T')[0];
+                                    setFormData({name: event.name, date: formattedDate, banner: ''});
                                     setShowModal(true);
                                 }}
                                 className=" w-20 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
@@ -145,7 +147,7 @@ const EventManagement = () => {
                                 Edit
                             </button>
                             <button
-                                onClick={() => handleDeleteEvent(event.id)}
+                                onClick={() => handleDeleteEvent(event._id)}
                                 className="w-20 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                             >
                                 Delete
