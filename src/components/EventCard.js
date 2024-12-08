@@ -45,7 +45,7 @@ const EventCard = ({ event }) => {
                                 <p>Address: {event.hotelAddress}</p>
                             </div>
                             <button
-                                className="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-300"
+                                className="mt-4 py-2 px-4 bg-[#DAA520] text-white rounded hover:bg-blue-700 transition-colors duration-300"
                                 onClick={handleModalToggle}
                             >
                                 Close

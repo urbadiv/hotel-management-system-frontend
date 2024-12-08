@@ -57,6 +57,14 @@ const Footer = () => {
                 Booking
               </a>
             </li>
+            <li>
+              <a
+                href="#booking"
+                className="hover:underline hover:text-gray-300 transition"
+              >
+                Menu
+              </a>
+            </li>
           </ul>
         </div>
 

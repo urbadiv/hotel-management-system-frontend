@@ -67,9 +67,11 @@ const Header = () => {
 
           {/* Navigation Links */}
           <nav className="hidden md:flex space-x-6">
+            <Link to="/user/home">
             <a href="#services" className="hover:underline">
-              Services
+              Home
             </a>
+            </Link>
 
             <Link to='/user/booking'><a href="#booking" className="hover:underline">
               Booking
