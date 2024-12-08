@@ -107,7 +107,7 @@ export default function CategoryWise() {
         axios.delete(`http://localhost:8070/products/deleteCat/${CategoryId}`)
             .then((res) => {
                 alert("Products deleted successfully");
-                window.location.href = '/';
+                window.location.href = '/admin/AllCategorys';
             })
             .catch((err) => {
                 alert("Error deleting product: " + err.message);
