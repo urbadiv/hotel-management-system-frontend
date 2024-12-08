@@ -33,6 +33,7 @@ import GenerateReports from './components/InventoryManagement/GenerateReports';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Menu from './pages/Menu';
 
 const App = () => {
     return (
@@ -90,6 +91,7 @@ const App = () => {
                                 <Route path="/booking" element={<Booking />} />
                                 <Route path="/single-booking/:roomId" element={<SingleBooking />} />
                                 <Route path="/my-bookings" element={<MyBookings />} />
+                                <Route path="/menu" element={<Menu />} />
                             </Routes>
                             <Footer/>
                         </div>

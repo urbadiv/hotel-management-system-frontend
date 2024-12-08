@@ -75,6 +75,10 @@ const Header = () => {
               Booking
             </a>
             </Link>
+            <Link to='/user/menu'><a href="#menu" className="hover:underline">
+              Menu
+            </a>
+            </Link>
             <Link to="/user/event">
             <a href="#events" className="hover:underline">
               Events

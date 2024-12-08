@@ -13,7 +13,7 @@ const Login = () => {
             const { data } = await login(formData);
             localStorage.setItem('token', data.token);
             if(getUserRole()=='user'){
-                window.location.href = '/user';
+                window.location.href = '/user/home';
             }else{
                 window.location.href = '/admin';
             }

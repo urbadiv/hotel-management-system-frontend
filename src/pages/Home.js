@@ -54,7 +54,7 @@ const Home = () => {
           </h1>
           <p className="text-xl mb-8">Your luxury getaway in Homagama, Sri Lanka.</p>
           <a
-            href="#booking"
+            href="/user/booking"
             className="bg-transparent hover:bg-white hover:border-transparent text-white border border-white px-6 py-3 rounded text-lg font-medium"
           >
             Book Now

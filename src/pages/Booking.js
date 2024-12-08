@@ -63,7 +63,7 @@ const RoomList = () => {
                 </div>
 
                 <div className="">
-                    <button onClick={() => navigate(`/`)} className=" bg-[#DAA520] text-white py-2 px-4 rounded hover:bg-[#B8860B]">See All Bookings</button>
+                    <button onClick={() => navigate(`/user/my-bookings`)} className=" bg-[#DAA520] text-white py-2 px-4 rounded hover:bg-[#B8860B]">See All Bookings</button>
                 </div>
 
                 {/* Room Cards */}
