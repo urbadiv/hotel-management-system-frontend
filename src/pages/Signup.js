@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { signup } from '../api/eventApi';
 import { Link } from "react-router-dom"; // Assuming you have a signup API function
+import logo from '../img/logo.png';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -145,7 +146,7 @@ const Signup = () => {
                     {errors.nic && <p className="text-red-500 text-sm">{errors.nic}</p>}
 
                     <button type="submit"
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200">Signup
+                            className="w-full bg-gray-900 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200">Signup
                     </button>
                     <div className="mt-2 text-center">
                         <p className="text-gray-600 text-sm">
@@ -160,12 +161,10 @@ const Signup = () => {
                 </form>
 
                 {/* Right side: Company Details */}
-                <div className="w-1/2 bg-gradient-to-r from-blue-400 to-blue-600 flex justify-center items-center text-white">
-                    <div className="text-center">
-                        <h1 className="text-4xl font-bold mb-4">Company Name</h1>
-                        <p className="text-lg">Welcome to our platform.</p>
-                        <p>Sign up today to access all the features we offer.</p>
-                    </div>
+                <div className="w-1/2 bg-gray-900 flex flex-col items-center justify-center text-white p-8">
+                    <img src={logo} alt="Company Logo" className="w-24 h-24 mb-4" />
+                    <h1 className="text-white text-4xl font-bold">Bon Bon Hotel</h1>
+                    <p className="mt-4 text-lg text-center">"Welcome to Hotel Bon Bon! Sign up to manage your bookings, events, and more. Experience personalized service at your fingertips."</p>
                 </div>
             </div>
         </div>

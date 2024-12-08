@@ -64,22 +64,27 @@ const EventManagement = () => {
             formDataToSend.append('name', formData.name);
             formDataToSend.append('date', formData.date);
             if (formData.banner) formDataToSend.append('banner', formData.banner);
-
+    
             const response = await updateEvent(editEvent._id, formDataToSend);
-            setEvents(events.map((event) => (event.id === editEvent.id ? response.data.event : event)));
-            setEditEvent(null);
+            
+            // Update events state with the updated event
+            setEvents(events.map((event) => (event._id === editEvent._id ? response.data.event : event)));
+            
             alert('Event updated successfully!');
             setFormData({ name: '', date: '', banner: '' });
+            setShowModal(false);  // Close modal after update
+            setEditEvent(null);    // Reset edit event
         } catch (error) {
             console.error('Error updating event:', error);
             alert('Failed to update event.');
         }
     };
-
+    
     const handleDeleteEvent = async (id) => {
         try {
             await deleteEvent(id);
-            setEvents(events.filter((event) => event.id !== id));
+            // Remove the deleted event from the state
+            setEvents(events.filter((event) => event._id !== id)); // Ensure _id is used
             alert('Event deleted successfully!');
         } catch (error) {
             alert('Failed to delete event.');
@@ -137,7 +142,8 @@ const EventManagement = () => {
                             <button
                                 onClick={() => {
                                     setEditEvent(event);
-                                    setFormData({name: event.name, date: event.date, banner: ''});
+                                    const formattedDate = new Date(event.date).toISOString().split('T')[0];
+                                    setFormData({name: event.name, date: formattedDate, banner: ''});
                                     setShowModal(true);
                                 }}
                                 className=" w-20 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
@@ -145,7 +151,7 @@ const EventManagement = () => {
                                 Edit
                             </button>
                             <button
-                                onClick={() => handleDeleteEvent(event.id)}
+                                onClick={() => handleDeleteEvent(event._id)}
                                 className="w-20 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                             >
                                 Delete
