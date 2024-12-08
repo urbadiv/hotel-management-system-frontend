@@ -123,7 +123,7 @@ const RoleManagement = () => {
             setFormData({ role: "", salary: "", maxEmployees: "" });
             setIsModalOpen(true);
           }}
-          className="bg-green-500 text-white p-3 rounded-full text-lg"
+          className="bg-blue-500 text-white p-3 rounded-full text-lg hover:bg-blue-600"
         >
           +
         </button>

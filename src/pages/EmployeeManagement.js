@@ -197,7 +197,7 @@ const EmployeeManagement = () => {
             });
             setIsModalOpen(true);
           }}
-          className="bg-green-500 text-white p-3 rounded-full text-lg hover:bg-green-600"
+          className="bg-blue-500 text-white p-3 rounded-full text-lg hover:bg-blue-600"
         >
           +
         </button>
@@ -318,33 +318,37 @@ const EmployeeManagement = () => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 gap-6 mt-6">
         {employees.map((employee) => (
           <div
             key={employee._id}
-            className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all"
+            className="bg-white p-6 rounded-lg shadow-lg flex space-x-4 items-center"
           >
-            <h3 className="text-xl font-semibold text-gray-800">
-              {employee.name}
-            </h3>
-            <p className="text-gray-600">Address: {employee.address}</p>
-            <p className="text-gray-600">Phone: {employee.phone}</p>
-            <p className="text-gray-600">NIC: {employee.nic}</p>
-            <p className="text-gray-600">Role: {employee.role.role}</p>
-            <p className="text-gray-600">Salary: Rs: {employee.salary}</p>
-            <div className="flex space-x-4 mt-4">
-              <button
-                onClick={() => handleEditEmployee(employee)}
-                className="bg-yellow-500 text-white py-1 px-3 rounded-md hover:bg-yellow-600"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDeleteEmployee(employee._id)}
-                className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
-              >
-                Delete
-              </button>
+            <div className="flex flex-row w-full">
+              <div className="w-full">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {employee.name}
+                </h3>
+                <p className="text-gray-600">Address: {employee.address}</p>
+                <p className="text-gray-600">Phone: {employee.phone}</p>
+                <p className="text-gray-600">NIC: {employee.nic}</p>
+                <p className="text-gray-600">Role: {employee.role.role}</p>
+                <p className="text-gray-600">Salary: Rs: {employee.salary}</p>
+              </div>
+              <div className="flex flex-col space-y-4 mt-4 justify-center items-center w-48 h-full">
+                <button
+                  onClick={() => handleEditEmployee(employee)}
+                  className="bg-yellow-500 text-white p-2 rounded-md hover:bg-yellow-600 w-full"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDeleteEmployee(employee._id)}
+                  className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600 w-full"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
