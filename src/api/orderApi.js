@@ -14,25 +14,25 @@ API.interceptors.request.use((req) => {
 
 // Create a new order
 export const createOrder = async (orderData) => {
-    return await API.post('/create', orderData);
+    return await API.post('/orders', orderData);
 };
 
 // Get all orders for the logged-in user
 export const getOrdersByUser = async () => {
-    return await API.get('/user');
+    return await API.get('/orders');
 };
 
 // Get a specific order by ID
 export const getOrderById = async (id) => {
-    return await API.get(`/details/${id}`);
+    return await API.get(`/orders/${id}`);
 };
 
-// Update an order by ID
+// Update an order
 export const updateOrder = async (id, updatedData) => {
-    return await API.put(`/update/${id}`, updatedData);
+    return await API.put(`/orders/${id}`, updatedData);
 };
 
-// Delete an order by ID
+// Delete an order
 export const deleteOrder = async (id) => {
-    return await API.delete(`/delete/${id}`);
+    return await API.delete(`/orders/${id}`);
 };

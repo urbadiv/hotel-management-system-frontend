@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getAllMenuItems } from '../api/menuItemApi';
-import { createOrder } from '../api/orderApi';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const [filterType, setFilterType] = useState('All'); // State to track the selected filter type
+  const [filterType, setFilterType] = useState('All');
+  const navigate = useNavigate();
 
-  // Fetch menu items using provided Axios instance
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
@@ -20,24 +20,10 @@ const Menu = () => {
     fetchMenuItems();
   }, []);
 
-  // Handle order creation
-  const handleAddToOrder = async (menuItem) => {
-    try {
-      const orderData = {
-        roomID: 'room123', // Example room ID
-        menuItemID: menuItem._id,
-        quantity: 1,
-      };
-      const response = await createOrder(orderData);
-      alert(`Order created for ${menuItem.name}!`);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Failed to create order', error);
-      alert('Something went wrong while adding to order');
-    }
+  const handleAddToOrder = (menuItem) => {
+    navigate(`/user/single-menuItem/${menuItem._id}`); // Navigate to the SingleMenuItem page with the menu item's ID
   };
 
-  // Filter menu items by type
   const filteredMenuItems = filterType === 'All'
     ? menuItems
     : menuItems.filter(item => item.type === filterType);
@@ -46,6 +32,16 @@ const Menu = () => {
     <div className="min-h-screen py-8 px-4">
       {/* Page Title */}
       <h1 className="text-4xl font-bold text-center mb-4 text-[#DAA520]">Menu</h1>
+
+      {/* See All Orders Button */}
+      <div className="flex justify-center mb-6">
+        <button
+          className="bg-[#DAA520] hover:bg-[#B8860B] text-white px-4 py-2 rounded-lg shadow-md transition duration-200"
+          onClick={() => navigate('/user/my-bookings')}
+        >
+          See All Orders
+        </button>
+      </div>
 
       {/* Filter Dropdown */}
       <div className="flex justify-center mb-6">

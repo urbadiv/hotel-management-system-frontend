@@ -34,6 +34,7 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './pages/Menu';
+import SingleMenuItem from './pages/SingleMenuItem';
 
 const App = () => {
     return (
@@ -92,6 +93,7 @@ const App = () => {
                                 <Route path="/single-booking/:roomId" element={<SingleBooking />} />
                                 <Route path="/my-bookings" element={<MyBookings />} />
                                 <Route path="/menu" element={<Menu />} />
+                                <Route path="/single-menuItem/:id" element={<SingleMenuItem />} />
                             </Routes>
                             <Footer/>
                         </div>
