@@ -88,9 +88,9 @@ const UserBooking = () => {
     };
 
     return (
-        <div className="p-4 m-10 grid grid-cols-2 gap-4">
-            {/* Bookings Table */}
-            <div>
+        <div className="p-4 m-10 flex gap-8">
+            {/* Bookings Section */}
+            <div className="flex-2">
                 <h2 className="text-2xl font-bold mb-4 font-sans">My Bookings</h2>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border-collapse border border-gray-300">
@@ -137,15 +137,15 @@ const UserBooking = () => {
                 </div>
             </div>
 
-            {/* Orders Table */}
-            <div>
+            {/* Orders Section */}
+            <div className="flex-1">
                 <h2 className="text-2xl font-bold mb-4 font-sans">My Orders</h2>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border-collapse border border-gray-300">
                         <thead>
                             <tr className="bg-gray-100">
-                                <th className="border border-gray-300 px-4 py-2">Order ID</th>
-                                <th className="border border-gray-300 px-4 py-2">Date</th>
+                                <th className="border border-gray-300 px-4 py-2">Order Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Quantity</th>
                                 <th className="border border-gray-300 px-4 py-2">Total Amount</th>
                                 <th className="border border-gray-300 px-4 py-2">Actions</th>
                             </tr>
@@ -153,12 +153,12 @@ const UserBooking = () => {
                         <tbody>
                             {orders.map((order) => (
                                 <tr key={order._id}>
-                                    <td className="border border-gray-300 px-4 py-2">{order._id}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{order.menuItemName}</td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        {order.date ? new Date(order.date).toLocaleDateString() : 'N/A'}
+                                        {order.quantity}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        ${order.totalAmount || '0.00'}
+                                        Rs:{order.totalCost || '0.00'}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
                                         <button
