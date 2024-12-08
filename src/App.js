@@ -15,9 +15,13 @@ import Profile from "./pages/Profile";
 import AdminLayout from "./components/AdminLayout";
 import NotFound from "./pages/NotFound"; // A 404 page component
 import UserTable from "./pages/UserTable";
+
 import { isAuthenticated, getUserRole } from "./utils/auth";
 import RoomManagement from "./pages/RoomManagement";
 import MenuManagement from "./pages/MenuManagement";
+import Booking from './pages/Booking'
+import SingleBooking from './pages/SingleBooking';
+import MyBookings from './pages/UserBookings'
 
 import EmployeeManagement from "./pages/EmployeeManagement";
 import RolesManagement from "./pages/RolesManagement";
@@ -38,6 +42,9 @@ import GenerateReports from "./components/InventoryManagement/GenerateReports";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Menu from './pages/Menu';
+import SingleMenuItem from './pages/SingleMenuItem';
+
 
 const App = () => {
   return (
@@ -99,22 +106,27 @@ const App = () => {
           }
         />
 
-        {/* Non-admin routes with Navbar */}
-        <Route
-          path="/user/*"
-          element={
-            <div>
-              <Header />
-              <Routes>
-                {/* Include any additional non-admin routes here */}
-                <Route path="/home" element={<Home />} />
-                <Route path="/event" element={<EventList />} />
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
-              <Footer />
-            </div>
-          }
-        />
+                {/* Non-admin routes with Navbar */}
+                <Route
+                    path="/user/*"
+                    element={
+                        <div>
+                            <Header />
+                            <Routes>
+                                {/* Include any additional non-admin routes here */}
+                                <Route path="/home" element={<Home />} />
+                                <Route path="/event" element={<EventList />} />
+                                <Route path="/profile" element={<Profile />} />
+                                <Route path="/booking" element={<Booking />} />
+                                <Route path="/single-booking/:roomId" element={<SingleBooking />} />
+                                <Route path="/my-bookings" element={<MyBookings />} />
+                                <Route path="/menu" element={<Menu />} />
+                                <Route path="/single-menuItem/:id" element={<SingleMenuItem />} />
+                            </Routes>
+                            <Footer/>
+                        </div>
+                    }
+                />
 
         {/* 404 Route for unmatched paths */}
         <Route path="*" element={<NotFound />} />

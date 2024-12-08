@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 export const getRooms = () => API.get('/rooms/rooms');
 
 // Get rooms by type (e.g., 'single', 'double', etc.)
-export const getRoomsByType = (type) => API.get(`/rooms/type/${type}`);
+export const getRoomsByType = (type) => API.get(`/rooms/rooms/type/${type}`);
 
 // Get a room by ID
 export const getRoomById = (id) => API.get(`/rooms/rooms/${id}`);

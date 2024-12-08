@@ -70,13 +70,17 @@ const Header = () => {
             <a href="#services" className="hover:underline">
               Services
             </a>
-            <Link to="/user/booking">
-            <a className="hover:underline">
+
+            <Link to='/user/booking'><a href="#booking" className="hover:underline">
               Booking
             </a>
             </Link>
+            <Link to='/user/menu'><a href="#menu" className="hover:underline">
+              Menu
+            </a>
+            </Link>
             <Link to="/user/event">
-            <a  className="hover:underline">
+            <a href="#events" className="hover:underline">
               Events
             </a>
             </Link>
