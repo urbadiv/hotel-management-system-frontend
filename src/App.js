@@ -13,7 +13,9 @@ import UserTable from "./pages/UserTable";
 import { isAuthenticated, getUserRole } from './utils/auth';
 import RoomManagement from './pages/RoomManagement';
 import MenuManagement from './pages/MenuManagement';
-
+import Booking from './pages/Booking'
+import SingleBooking from './pages/SingleBooking';
+import MyBookings from './pages/UserBookings'
 
 import AddProduct from './components/InventoryManagement/AddProduct';
 import AllProducts from './components/InventoryManagement/AllProducts';
@@ -85,6 +87,9 @@ const App = () => {
                                 <Route path="/home" element={<Home />} />
                                 <Route path="/event" element={<EventList />} />
                                 <Route path="/profile" element={<Profile />} />
+                                <Route path="/booking" element={<Booking />} />
+                                <Route path="/single-booking/:roomId" element={<SingleBooking />} />
+                                <Route path="/my-bookings" element={<MyBookings />} />
                             </Routes>
                             <Footer/>
                         </div>

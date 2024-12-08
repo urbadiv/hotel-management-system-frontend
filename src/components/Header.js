@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; // Ensure you're using react-router-dom
+import { Link, useLocation } from "react-router-dom"; // Ensure you're using react-router-dom
 import logo from "../img/logo.png";
 import user from "../img/profile.png";
 
@@ -68,9 +68,12 @@ const Header = () => {
             <a href="#services" className="hover:underline">
               Services
             </a>
-            <a href="#booking" className="hover:underline">
+
+            <Link to='/user/booking'><a href="#booking" className="hover:underline">
               Booking
             </a>
+            </Link>
+            
             <a href="#events" className="hover:underline">
               Events
             </a>
