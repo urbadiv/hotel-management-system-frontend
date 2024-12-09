@@ -78,7 +78,7 @@ const Menu = () => {
               <h3 className="text-lg font-semibold text-gray-800 mb-1">{item.name}</h3>
               <p className="text-sm text-gray-600 mb-2">{item.description}</p>
               <p className="text-sm text-gray-700 mb-2">Type: {item.type}</p>
-              <p className="text-sm text-gray-700 mb-4">Price: ${item.price.toFixed(2)}</p>
+              <p className="text-sm text-gray-700 mb-4">Price: Rs:{item.price.toFixed(2)}</p>
 
               {/* Add to Order Button */}
               <button

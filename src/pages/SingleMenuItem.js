@@ -73,7 +73,7 @@ const SingleMenuItem = () => {
         <div className="p-6">
           <p className="text-gray-700 mb-4">{menuItem.description}</p>
           <p className="text-gray-800 font-semibold mb-2">Type: {menuItem.type}</p>
-          <p className="text-gray-800 font-semibold mb-4">Price: ${menuItem.price.toFixed(2)}</p>
+          <p className="text-gray-800 font-semibold mb-4">Price: Rs:{menuItem.price.toFixed(2)}</p>
 
           {/* Quantity Selector */}
           <div className="flex items-center mb-4">
