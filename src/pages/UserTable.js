@@ -39,50 +39,50 @@ const UserTable = () => {
 
     return (
         <div className="p-6 relative">
-            <div className="mb-4">
-                <h2 className="text-2xl font-bold mb-2">Admins</h2>
-                <table className="min-w-full bg-white border border-gray-300">
-                    <thead className="text-left">
+            <div className="mb-8">
+                <h2 className="text-3xl font-semibold mb-4 text-gray-700">Admins</h2>
+                <table className="min-w-full table-auto border-collapse overflow-hidden shadow-lg rounded-lg">
+                    <thead className="bg-gray-100">
                         <tr>
-                            <th className="py-2 px-4 border-b">Name</th>
-                            <th className="py-2 px-4 border-b">Email</th>
-                            <th className="py-2 px-4 border-b">Employee ID</th>
-                            <th className="py-2 px-4 border-b">Role</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Name</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Email</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Employee ID</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Role</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-200">
                         {admins.map((admin) => (
-                            <tr key={admin._id}>
-                                <td className="py-2 px-4 border-b">{admin.name}</td>
-                                <td className="py-2 px-4 border-b">{admin.email}</td>
-                                <td className="py-2 px-4 border-b">{admin.employeeId}</td>
-                                <td className="py-2 px-4 border-b">{admin.role}</td>
+                            <tr key={admin._id} className="hover:bg-gray-50">
+                                <td className="py-3 px-5 text-gray-800">{admin.name}</td>
+                                <td className="py-3 px-5 text-gray-800">{admin.email}</td>
+                                <td className="py-3 px-5 text-gray-800">{admin.employeeId}</td>
+                                <td className="py-3 px-5 text-gray-800">{admin.role}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
 
-            <div className="mb-4">
-                <h2 className="text-2xl font-bold mb-2">Users</h2>
-                <table className="min-w-full bg-white border border-gray-300">
-                    <thead className="text-left">
+            <div className="mb-8">
+                <h2 className="text-3xl font-semibold mb-4 text-gray-700">Users</h2>
+                <table className="min-w-full table-auto border-collapse overflow-hidden shadow-lg rounded-lg">
+                    <thead className="bg-gray-700">
                         <tr>
-                            <th className="py-2 px-4 border-b">Name</th>
-                            <th className="py-2 px-4 border-b">Email</th>
-                            <th className="py-2 px-4 border-b">NIC</th>
-                            <th className="py-2 px-4 border-b">Actions</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Name</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Email</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">NIC</th>
+                            <th className="py-3 px-5 bg-gray-400 border-b text-left text-gray-600 font-medium">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="divide-y divide-gray-200">
                         {users.map((user) => (
-                            <tr key={user._id}>
-                                <td className="py-2 px-4 border-b">{user.name}</td>
-                                <td className="py-2 px-4 border-b">{user.email}</td>
-                                <td className="py-2 px-4 border-b">{user.nic}</td>
-                                <td className="py-2 px-4 border-b">
+                            <tr key={user._id} className="hover:bg-gray-50">
+                                <td className="py-3 px-5 text-gray-800">{user.name}</td>
+                                <td className="py-3 px-5 text-gray-800">{user.email}</td>
+                                <td className="py-3 px-5 text-gray-800">{user.nic}</td>
+                                <td className="py-3 px-5 text-gray-800">
                                     <button
-                                        className="text-red-500 hover:text-red-700"
+                                        className="bg-red-600 text-white hover:text-red-800 px-6 py-2 rounded shadow-lg"
                                         onClick={() => deleteUser(user._id)}
                                     >
                                         Delete
@@ -95,7 +95,7 @@ const UserTable = () => {
             </div>
 
             <button
-                className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                className="mt-4 bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded shadow-lg"
                 onClick={() => setIsModalOpen(true)}
             >
                 Register Admin
