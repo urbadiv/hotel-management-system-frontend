@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { isAuthenticated, getUserRole } from '../utils/auth';
 
 const ProtectedRoute = ({ children, role }) => {
-    if (!isAuthenticated() || (role && !role.includes(getUserRole()))) {
+    if (!isAuthenticated() || (role && getUserRole() !== role)) {
         return <Navigate to="/login" replace />;
     }
     return children;

@@ -8,7 +8,7 @@ const Register = () => {
         password: '',
         address: '',
         phone: '',
-        role: '',
+        role: 'admin',
         employeeId: '',
         nic: '',
     });
@@ -147,22 +147,17 @@ const Register = () => {
                         />
                     </div>
 
-                    {/* Role selection field */}
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-medium mb-2" htmlFor="role">Role</label>
-                        <select
-                            id="role"
-                            name="role"
+                        <label className="block text-gray-700 font-medium mb-2" htmlFor="nic">NIC</label>
+                        <input
+                            type="text"
+                            id="nic"
+                            name="nic"
                             className="w-full border border-gray-300 rounded p-2"
-                            value={formData.role}
+                            value={formData.nic}
                             onChange={handleChange}
-                        >
-                            <option value="admin">Admin</option>
-                            <option value="event-manager">Event Manager</option>
-                            <option value="inventory-manager">Inventory Manager</option>
-                            <option value="booking-manager">Booking Manager</option>
-                            <option value="hr-manager">HR Manager</option>
-                        </select>
+                            required
+                        />
                     </div>
 
                     <button

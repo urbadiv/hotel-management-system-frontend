@@ -17,7 +17,7 @@ const UserTable = () => {
             .then(response => {
                 const allUsers = response.data;
                 setUsers(allUsers.filter(user => user.role === 'user'));
-                setAdmins(allUsers.filter(user => user.role === 'admin'||'admin'||'user'||'event-manager'||'inventory-manager'||'booking-manager'||'hr-manager'));
+                setAdmins(allUsers.filter(user => user.role === 'admin'));
             })
             .catch(error => console.error('Error fetching users:', error));
     }, []);
