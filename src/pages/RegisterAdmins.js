@@ -41,7 +41,6 @@ const Register = () => {
             newErrors.employeeId = "Employee ID must start with 'e' followed by 5 digits";
         }
 
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -115,11 +114,23 @@ const Register = () => {
                     />
                     {errors.employeeId && <p className="text-red-500 text-sm">{errors.employeeId}</p>}
 
+                    <select
+                        className="block w-full mb-2 p-2 border rounded"
+                        value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    >
+                        <option value="admin">Admin</option>
+                        <option value="event-manager">Event Manager</option>
+                        <option value="inventory-manager">Inventory Manager</option>
+                        <option value="booking-manager">Booking Manager</option>
+                        <option value="hr-manager">HR Manager</option>
+                    </select>
+
                     <button
                         type="submit"
                         className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200"
                     >
-                        Register Admin
+                        Register
                     </button>
                 </form>
             </div>
