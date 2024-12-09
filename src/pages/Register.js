@@ -51,7 +51,7 @@ const Register = () => {
             try {
                 await signup(formData);
                 alert('Signup successful!');
-                window.location.href = '/login';
+                window.location.href = '/admin/users';
             } catch (error) {
                 alert('Signup failed. Please try again.');
             }
@@ -61,7 +61,7 @@ const Register = () => {
     };
 
     return (
-        <div className="pt-20 fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <div className="pt-15 fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className=" bg-white rounded-lg shadow-lg max-w-4xl w-full max-h-[90vh] p-8 overflow-y-auto">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Register Admin</h2>
                 <form onSubmit={handleSubmit}>
