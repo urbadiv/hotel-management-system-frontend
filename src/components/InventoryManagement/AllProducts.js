@@ -167,8 +167,8 @@ export default function AllProducts() {
                                             <td>{product.pid}</td>
                                             <td>{product.category}</td>
                                             <td>
-                                                <Link to={`/DisplaySingle/${product._id}`} className="button link-button update">View</Link>
-                                                <Link to={`/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
+                                                <Link to={`/admin/DisplaySingle/${product._id}`} className="button link-button update">View</Link>
+                                                <Link to={`/admin/AddDisposeItems/${product._id}`} className="button link-button dispose">Dispose Item</Link>
                                                 <button className="button button-delete" onClick={() => deleteProduct(product._id)} >Delete</button>
                                             </td>
                                         </tr>
