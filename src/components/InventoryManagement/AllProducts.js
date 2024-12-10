@@ -108,32 +108,32 @@ export default function AllProducts() {
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/AllProducts`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Products: {productCount}</Link>
+                                    <Link to={`/admin/AllProducts`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Products: {productCount}</Link>
                                 </div>
 
                                 <div className="notifySubLowStocked">
                                     <img src={lowstock} />
-                                    <Link to={`/LowStockedList`} style={{ textDecoration: 'none', color: 'red' }} >Out of Stock: {productLowCount}</Link>
+                                    <Link to={`/admin/LowStockedList`} style={{ textDecoration: 'none', color: 'red' }} >Out of Stock: {productLowCount}</Link>
                                 </div>
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/DamageItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Expired Items: {damagedCount}</Link>
+                                    <Link to={`/admin/DamageItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Expired Items: {damagedCount}</Link>
                                 </div>
 
                                 <div className="notifySub">
                                     <img src={total} />
-                                    <Link to={`/DisposedItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Disposed Items: {disposedCount}</Link>
+                                    <Link to={`/admin/DisposedItemList`} style={{ textDecoration: 'none', color: 'aliceblue' }}>Total Disposed Items: {disposedCount}</Link>
 
                                 </div>
 
                             </div>
 
                             <div class="button-row">
-                                <Link to={`/GenerateReports`} className="button link-button">Generate Reports</Link>
-                                <Link to={`/AllProducts`} className="button link-button">Manage Items</Link>
-                                <Link to={`/add`} className="button link-button">Add New Items</Link>
-                                <Link to={`/AddCategory`} className="button link-button">Add New Category</Link>
+                                <Link to={`/admin/GenerateReports`} className="button link-button">Generate Reports</Link>
+                                <Link to={`/admin/AllProducts`} className="button link-button">Manage Items</Link>
+                                <Link to={`/admin/add`} className="button link-button">Add New Items</Link>
+                                <Link to={`/admin/AddCategory`} className="button link-button">Add New Category</Link>
 
                                 <form class="searchBar" role="search">
                                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setSearch(e.target.value)} />

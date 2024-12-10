@@ -94,7 +94,6 @@ export default function GenerateReports() {
                                 </label>
                             </div>
                             <div ref={componentPDF} style={{ width: "100%" }}>
-                                <img src={reportImage} alt="Report" style={{ display: "block", margin: "auto", width: "100px", paddingBottom: "10px" }} />
                                 <table>
                                     <thead>
                                         <tr>
