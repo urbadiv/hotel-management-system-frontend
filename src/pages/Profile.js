@@ -97,7 +97,7 @@ const Profile = () => {
               {profile.nic}
             </div>
           )}
-          {profile.role === "admin" && (
+          {profile.role !== "user" && (
             <>
               <div>
                 <strong className="block text-gray-700">Employee ID:</strong>
