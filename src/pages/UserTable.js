@@ -1,45 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Register from './Register';
+import {getUserRole} from "../utils/auth";
 
 const UserTable = () => {
     const [users, setUsers] = useState([]);
     const [admins, setAdmins] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const userRole = getUserRole();
 
     useEffect(() => {
-        axios
-            .get('http://localhost:8070/auth/users', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            .then((response) => {
+        // Fetch all users from the API
+        axios.get('http://localhost:8070/auth/users',{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+            .then(response => {
                 const allUsers = response.data;
-                setUsers(allUsers.filter((user) => user.role === 'user'));
-                setAdmins(allUsers.filter((user) => user.role === 'admin'));
+                setUsers(allUsers.filter(user => user.role === 'user'));
+                setAdmins(allUsers.filter(user => user.role === 'admin'||'admin'||'user'||'event-manager'||'inventory-manager'||'booking-manager'||'hr-manager'));
             })
-            .catch((error) => console.error('Error fetching users:', error));
+            .catch(error => console.error('Error fetching users:', error));
     }, []);
 
     const deleteUser = (id) => {
-        axios
-            .delete(`http://localhost:8070/auth/users/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
+        axios.delete(`http://localhost:8070/auth/users/${id}`,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
             .then(() => {
                 alert('User deleted successfully');
-                setUsers(users.filter((user) => user._id !== id));
-                setAdmins(admins.filter((admin) => admin._id !== id));
+                setUsers(users.filter(user => user._id !== id));
+                setAdmins(admins.filter(admin => admin._id !== id));
             })
-            .catch((error) => console.error('Error deleting user:', error));
+            .catch(error => console.error('Error deleting user:', error));
     };
 
     return (
         <div className="p-6 relative">
-            <div className="mb-8">
+            {userRole==='admin'&&<div className="mb-8">
                 <h2 className="text-3xl font-semibold mb-4 text-gray-700">Admins</h2>
                 <table className="min-w-full table-auto border-collapse overflow-hidden shadow-lg rounded-lg">
                     <thead className="bg-gray-100">
@@ -61,7 +62,7 @@ const UserTable = () => {
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div>}
 
             <div className="mb-8">
                 <h2 className="text-3xl font-semibold mb-4 text-gray-700">Users</h2>
@@ -94,12 +95,12 @@ const UserTable = () => {
                 </table>
             </div>
 
-            <button
+            {userRole==='admin'&&<button
                 className="mt-4 bg-gray-900 hover:bg-gray-700 text-white px-6 py-2 rounded shadow-lg"
                 onClick={() => setIsModalOpen(true)}
             >
                 Register Admin
-            </button>
+            </button>}
 
             {isModalOpen && (
     <div
